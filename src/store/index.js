@@ -46,10 +46,13 @@ export default new Vuex.Store({
     getters: {
         account_details (state) {
             let details = state.account
+            let users = []
             if(details.authorized_users){
-                details.authorized_users.map(function (obj) {
-                    return obj['details'] = state.customers[obj.customer_id]
-                })
+                for (let user of details.authorized_users) {
+                    users.push(state.customers[user.customer_id])
+                }
+                users.push(state.customers[details.primary_user])
+                details['users'] = users
             }
             details['transactions'] = state.transactions
             return details
@@ -109,6 +112,7 @@ export default new Vuex.Store({
             let store = this
             store.dispatch('load_account', account_id).then(() => {
                 if(store.state.account){
+                    store.dispatch('load_customers', store.state.account.primary_user)
                     for (let user of store.state.account.authorized_users) {
                       store.dispatch('load_customers', user.customer_id)
                     }
