@@ -27,7 +27,7 @@ axios.defaults.headers.common['Content-Type'] = 'application/json';
 // })
 
 let makeRequest = function (context, endpoint, account_id, state_name) {
-    axios.post(ENDPOINTS[endpoint], JSON.stringify({'account_id': parseInt(account_id)})).then((response) => {
+    return axios.post(ENDPOINTS[endpoint], JSON.stringify({'account_id': parseInt(account_id)})).then((response) => {
         if(!state_name) { state_name = endpoint } //override accounts to set single account
         context.commit('set_'+state_name, response.data[0])
     }, (err) => {
@@ -42,6 +42,18 @@ export default new Vuex.Store({
         transactions: {},
         rewards: {},
         payments: {}
+    },
+    getters: {
+        account_details (state) {
+            let details = state.account
+            if(details.authorized_users){
+                details.authorized_users.map(function (obj) {
+                    return obj['details'] = state.customers[obj.customer_id]
+                })
+            }
+            details['transactions'] = state.transactions
+            return details
+        }
     },
     mutations: {
         set_accounts (state, accounts) {
@@ -68,30 +80,41 @@ export default new Vuex.Store({
     },
     actions: {
         load_accounts (context) {
-            axios.post(ENDPOINTS.accounts).then((response) => {
+            return axios.post(ENDPOINTS.accounts).then((response) => {
                 context.commit('set_accounts', response.data)
             }, (err) => {
                 console.log(err)
             })
         },
         load_account (context, account_id) {
-            makeRequest(context, 'accounts', account_id, 'account')
+            return makeRequest(context, 'accounts', account_id, 'account')
         },
         load_customers (context, customer_id) {
-            axios.post(ENDPOINTS.customers, JSON.stringify({'customer_id': parseInt(customer_id)})).then((response) => {
+            return axios.post(ENDPOINTS.customers, JSON.stringify({'customer_id': parseInt(customer_id)})).then((response) => {
                 context.commit('set_customers', response.data)
             }, (err) => {
                 console.log(err)
             })
         },
         load_transactions (context, account_id) {
-            makeRequest(context, 'transactions', account_id)
+             return makeRequest(context, 'transactions', account_id)
         },
         load_rewards (context, account_id) {
-            makeRequest(context, 'rewards', account_id)
+             return makeRequest(context, 'rewards', account_id)
         },
         load_payments (context, account_id) {
-            makeRequest(context, 'payments', account_id)
+             return makeRequest(context, 'payments', account_id)
+        },
+        load_account_details(context, account_id) {
+            let store = this
+            store.dispatch('load_account', account_id).then(() => {
+                if(store.state.account){
+                    for (let user of store.state.account.authorized_users) {
+                      store.dispatch('load_customers', user.customer_id)
+                    }
+                }
+            })
+            store.dispatch('load_transactions', account_id)
         }
     }
 })
