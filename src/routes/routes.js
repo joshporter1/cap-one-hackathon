@@ -66,6 +66,11 @@ const routes = [
         path: 'api-test',
         name: 'api-test',
         component: ApiTest
+      },
+      {
+        path: 'adultdash',
+        name: 'adultdash',
+        component: Adultdash
       }
     ]
   },
