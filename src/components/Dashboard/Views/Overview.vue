@@ -3,22 +3,9 @@
     count: {{count}}
     count: {{$store.state.count}}
     <!--Stats cards-->
-    <div class="row">
-      <div class="col-lg-3 col-sm-6" v-for="stats in statsCards">
-        <stats-card>
-          <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
-            <i :class="stats.icon"></i>
-          </div>
-          <div class="numbers" slot="content">
-            <p>{{stats.title}}</p>
-            {{stats.value}}
-          </div>
-          <div class="stats" slot="footer">
-            <i :class="stats.footerIcon"></i> {{stats.footerText}}
-          </div>
-        </stats-card>
-      </div>
-    </div>
+
+    <pet-card></pet-card>
+
 
     <!--Charts-->
     <div class="row">
@@ -71,10 +58,12 @@
 <script>
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
+  import PetCard from 'components/UIComponents/Cards/PetCard.vue'
   export default {
     components: {
       StatsCard,
-      ChartCard
+      ChartCard,
+      PetCard
     },
     /**
      * Chart data used to render stats, charts. Should be replaced with server data
