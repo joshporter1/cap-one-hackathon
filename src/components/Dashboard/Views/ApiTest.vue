@@ -5,8 +5,8 @@
           <div class="header">
           </div>
           <div class="content all-icons">
-            <h4 class="title">User Account</h4>
-            {{account_details}}
+            <h4 class="title">User Account {{account_id}}</h4>
+            <pre>{{pretty_account_details}}</pre>
           </div>
         </div>
       </div>
@@ -17,15 +17,30 @@
   import { mapState, mapActions, mapGetters } from 'vuex'
 
   export default {
-    mounted () {
-      let customer_id = '100400000'
-      let _this = this
-      this.load_account_details(customer_id)
-    },
     methods: mapActions([
       'load_account_details'
     ]),
-    computed: mapGetters(['account_details'])
+    mounted () {
+      if(this.account_id){
+        this.load_account_details(this.account_id)
+      }
+    },
+    computed: Object.assign({}, mapGetters(['account_details']),
+      {
+        account_id: function() {
+          return this.$route.params.account_id
+        },
+        pretty_account_details: function() {
+          return JSON.stringify(this.account_details, null, 2);
+        }
+      }
+    ),
+    watch: {
+      account_id () {
+        this.load_account_details(this.account_id)
+      }
+    }
+
   }
 </script>
 <style>
