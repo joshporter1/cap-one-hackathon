@@ -10,12 +10,8 @@ import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
-<<<<<<< HEAD
-import Adultdash from 'src/components/Dashboard/Views/AdultDash.vue'
-=======
 import ApiTest from 'src/components/Dashboard/Views/ApiTest.vue'
->>>>>>> ed7499338d99674a6fc7495daefcff1a61fa64a0
-
+import Adultdash from 'src/components/Dashboard/Views/AdultDash.vue'
 const routes = [
   {
     path: '/',
