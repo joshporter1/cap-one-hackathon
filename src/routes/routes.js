@@ -11,7 +11,7 @@ import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
 import ApiTest from 'src/components/Dashboard/Views/ApiTest.vue'
-
+import Adultdash from 'src/components/Dashboard/Views/AdultDash.vue'
 const routes = [
   {
     path: '/',
@@ -62,6 +62,11 @@ const routes = [
         path: 'api-test/:account_id',
         name: 'api-test',
         component: ApiTest
+      },
+      {
+        path: 'adultdash',
+        name: 'adultdash',
+        component: Adultdash
       }
     ]
   },

@@ -15,8 +15,8 @@
             <div class="col-xs-6">
               {{member.name}}
               <br>
-              <span :class="getStatusClass(member.status)">
-                <small>{{member.status}}</small>
+              <span >
+                <small :class="getStatusClass(member.status)">${{member.creditUsed}} / ${{member.creditLimit}}  </small>
               </span>
             </div>
   
@@ -35,22 +35,28 @@
   export default {
     data () {
       return {
-        title: 'Team members',
+        title: 'Family members',
         members: [
           {
             image: 'static/img/faces/face-0.jpg',
-            name: 'Dj Khaled',
-            status: 'Offline'
+            name: 'Timmy',
+            status: 'Available',
+            creditUsed: 15,
+            creditLimit: 15
           },
           {
-            image: 'static/img/faces/face-1.jpg',
-            name: 'Creative Tim',
-            status: 'Available'
+            image: 'static/img/faces/face-0.jpg',
+            name: 'Bobby',
+            status: 'Busy',
+            creditUsed: 40,
+            creditLimit: 25
           },
           {
-            image: 'static/img/faces/face-1.jpg',
-            name: 'Flume',
-            status: 'Busy'
+            image: 'static/img/faces/face-0.jpg',
+            name: 'Sean',
+            status: 'Available',
+            creditUsed: 25,
+            creditLimit: 50
           }
         ]
       }

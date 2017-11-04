@@ -37,7 +37,13 @@ const SidebarStore = {
       name: 'Notifications',
       icon: 'ti-bell',
       path: '/admin/notifications'
+    },
+    {
+      name: 'AdultDashboard',
+      icon: 'ti-panel',
+      path: '/admin/adultdash'
     }
+    
   ],
   displaySidebar (value) {
     this.showSidebar = value
