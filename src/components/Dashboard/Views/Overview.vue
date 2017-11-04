@@ -1,6 +1,7 @@
 <template>
   <div>
-
+    count: {{count}}
+    count: {{$store.state.count}}
     <!--Stats cards-->
     <div class="row">
       <div class="col-lg-3 col-sm-6" v-for="stats in statsCards">
@@ -78,6 +79,11 @@
     /**
      * Chart data used to render stats, charts. Should be replaced with server data
      */
+    computed: {
+      count() {
+        return this.$store.state.count
+      }
+    },
     data () {
       return {
         statsCards: [

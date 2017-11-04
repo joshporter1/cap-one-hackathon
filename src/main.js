@@ -8,6 +8,9 @@ import Notifications from './components/UIComponents/NotificationPlugin'
 import SideBar from './components/UIComponents/SidebarPlugin'
 import App from './App'
 
+// vuex store setup
+import store from './store'
+
 // router setup
 import routes from './routes/routes'
 
@@ -40,8 +43,9 @@ Object.defineProperty(Vue.prototype, '$Chartist', {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  render: h => h(App),
+  store,
   router,
+  render: h => h(App),
   data: {
     Chartist: Chartist
   }
