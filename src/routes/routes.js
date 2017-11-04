@@ -59,7 +59,7 @@ const routes = [
         component: TableList
       },
       {
-        path: 'api-test',
+        path: 'api-test/:account_id',
         name: 'api-test',
         component: ApiTest
       }
