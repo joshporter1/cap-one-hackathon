@@ -9,6 +9,7 @@
     "build": "cross-env node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.17.0",
     "bootstrap": "^3.3.7",
     "chartist": "^0.10.1",
     "vue": "^2.3.0",
