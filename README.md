@@ -17,6 +17,10 @@
 ### run and watch unit tests
 `npm run unit:watch`
 
+## Using API Testbed
+1. Use Views/ApiTest.vue as a template of sorts
+2. Navigate to `http://localhost:8080/#/admin/api-test/:account_id`
+
 ## Using Pet Cards
 in your vue file, be sure to include these items in their correct locations.
 ```
