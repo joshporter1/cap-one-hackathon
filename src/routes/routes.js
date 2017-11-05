@@ -12,6 +12,8 @@ import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
 import ApiTest from 'src/components/Dashboard/Views/ApiTest.vue'
 import Adultdash from 'src/components/Dashboard/Views/AdultDash.vue'
+import KidDashboard from 'src/components/Dashboard/Views/KidDashboard.vue'
+
 const routes = [
   {
     path: '/',
@@ -67,7 +69,12 @@ const routes = [
         path: 'adultdash',
         name: 'adultdash',
         component: Adultdash
-      }
+      },
+      {
+        path: 'kidDashboard',
+        name: 'kidDashboard',
+        component: KidDashboard
+      },
     ]
   },
   { path: '*', component: NotFound }
