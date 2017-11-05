@@ -5,21 +5,16 @@
     </div>
     <div class="content">
       <div class="author">
-        <img class="avatar border-white" src="static/img/faces/phil.png" alt="...">
-        <h4 class="title">{{name}}
-          <br>
-          <a href="#">
-            <small>{{screenName}}</small>
-          </a>
-        </h4>
+        <img class="avatar border-white" :src="profile" :alt="firstname">
+        <h4 v-if="firstname && lastname" class="title">{{firstname}} {{lastname}}</h4>
       </div>
     </div>
     <div class="text-center">
       <div class="row">
-        <div v-for="(info,index) in details" :class="getClasses(index)">
-          <h5>{{info.title}}
+        <div class="col-sm-12 text-left" style="margin-left: 20px">
+          <h5>{{card_type}}
             <br>
-            <small>{{info.subTitle}}</small>
+            <small>Your Card</small>
           </h5>
         </div>
       </div>
@@ -27,34 +22,42 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
+
   export default {
+    props: ['user', 'card_type'],
     data () {
       return {
-        name: 'Philippe Batigne',
-        screenName: '@chetfaker',
+        profile: "static/img/faces/face-0.jpg"
       }
     },
-    methods: {
-      getClasses (index) {
-        var remainder = index % 3
-        if (remainder === 0) {
-          return 'col-md-3 col-md-offset-1'
-        } else if (remainder === 2) {
-          return 'col-md-4'
-        } else {
-          return 'col-md-3'
+    watch: {
+      user () {
+        let _this = this
+        if(typeof this.user.gender !== 'undefined') {
+          let url = 'https://randomuser.me/api/?gender='+ this.user.gender.toLowerCase() +'&inc=picture'
+          axios.get(url).then((response) => {
+            _this.profile = response.data.results[0].picture.medium
+          }, (err) => {
+              console.log(err)
+          })
         }
-      },
-      hasValue (item, column) {
-        return item[column.toLowerCase()] !== 'undefined'
-      },
-      itemValue (item, column) {
-        return item[column.toLowerCase()]
       }
+    },
+    computed: {
+      firstname () { 
+        if(this.user)
+          return this.user.first_name
+        else
+          return ''
+      },
+      lastname () { return this.user.last_name }
     }
   }
 
 </script>
 <style>
-
+.card-user .content {
+  min-height: 100px!important;
+}
 </style>
