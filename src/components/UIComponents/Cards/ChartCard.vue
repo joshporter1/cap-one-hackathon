@@ -107,7 +107,7 @@
 <style>
 .ct-series .ct-bar {
   /* The width of your bars */
-  stroke-width: 30px;
+  stroke-width: 15px;
   /* Yes! Dashed bars! */
 }
 </style>

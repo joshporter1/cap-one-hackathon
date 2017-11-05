@@ -7,56 +7,69 @@
           <div slot="api_details">
             <li class="list-group-item" style='border: 0px;'>
               <div class="row" >
-                <div class="col-xs-8">
-                  <b>Utilization:</b>
-                </div>
-                <div class="col-xs-4">
-                  {{utilization}}%
-                </div>
-              </div>
-            </li>
-            <li class="list-group-item" style='border: 0px;'>
-              <div class="row" >
-                <div class="col-xs-8">
-                  <b>Balance:</b>
-                </div>
-                <div class="col-xs-4">
-                  ${{balance}}
-                </div>
-              </div>
-            </li>
-            <li class="list-group-item" style='border: 0px;'>
-              <div class="row" >
-                <div class="col-xs-8">
-                  <b>Credit Limit:</b>
-                </div>
-                <div class="col-xs-4">
-                  ${{limit}}
-                </div>
-              </div>
-            </li>
-            <li class="list-group-item" style='border: 0px;'>
-              <div class="row" >
-                <div class="col-xs-8">
+                <div class="col-xs-6">
                   <b>Remaining:</b>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-6">
                   ${{remaining}}
                 </div>
               </div>
             </li>
             <li class="list-group-item" style='border: 0px;'>
               <div class="row" >
-                <div class="col-xs-8">
+                <div class="col-xs-6">
+                  <b>Utilization:</b>
+                </div>
+                <div class="col-xs-6">
+                  {{utilization}}%
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-6">
                   <b>Total Rewards Earned:</b>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-6">
                   ${{rewards}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-6">
+                  <b>Balance:</b>
+                </div>
+                <div class="col-xs-6">
+                  ${{balance}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-6">
+                  <b>Credit Limit:</b>
+                </div>
+                <div class="col-xs-6">
+                  ${{limit}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-6">
+                  <b>Card:</b>
+                </div>
+                <div class="col-xs-6">
+                  {{account_details.card_type}}
                 </div>
               </div>
             </li>
           </div>
         </detail-card>
+        <chart-card
+          :users="account_details.users">
+        </chart-card>
       </div>
       <div class="col-lg-8 col-md-7">
         <h3 class="title" style="margin-top: 0">Family Tracker</h3>
@@ -66,9 +79,30 @@
               <pet-card :account_details="account_details" :customer_id="customer.customer_id" :credit_limit="account_details.credit_limit" :customer_details="account_details.users[customer.customer_id]"></pet-card>
             </div>
           </div>
-          <chart-card
-            :users="account_details.users">
-          </chart-card>
+
+          <div class='row'>
+            <div class="col-md-12">
+                <h3 class="title">Family Transations</h3>
+              <div class="card">
+                <div class="content table-responsive table-full-width">
+                  <table class="table table-striped">
+                      <thead>
+                        <th>Rewards Earned</th>
+                        <th>Amount</th>
+                        <th>Merchant</th>
+                      </thead>
+                      <tbody>
+                        <tr v-for="transaction in flattenTransactions">
+                          <td>${{transaction.rewards_earned}}</td>
+                          <td>${{transaction.amount}}</td>
+                          <td>{{transaction.merchant_name}}</td>
+                        </tr>
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <br><br>
       </div>
@@ -83,6 +117,10 @@
   import PetCard from 'components/UIComponents/Cards/PetCard.vue'
 
   export default {
+    data() {
+      return {
+      }
+    },
     components: {
       UserCard,
       MembersCard,
@@ -124,6 +162,16 @@
         },
         customer_id: function() {
           return this.$route.params.customer_id
+        },
+        flattenTransactions: function() {
+          var transactions = [];
+          var account_transactions = this.account_details.transactions;
+          Object.keys(account_transactions).forEach(function(key) {
+            account_transactions[key].forEach(function(transaction) {
+              transactions.push(transaction);
+            });
+          });
+          return transactions;
         }
       }
     ),
