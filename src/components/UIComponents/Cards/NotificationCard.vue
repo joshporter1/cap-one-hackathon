@@ -82,8 +82,11 @@
         this.tableData.splice(value, 1);
         
         if(this.tableData.length == 0){
-           this.$emit('input');
-           console.log("zero")
+           this.$emit('input',"no");
+          
+        }else{
+          this.$emit('input',"bounce");
+        
         }
       }
     }

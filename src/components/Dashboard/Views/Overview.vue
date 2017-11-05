@@ -2,7 +2,7 @@
   <div>
     <div class='row'>
       <div class='col-md-6'>
-        <notification-card v-on:input="update()"></notification-card>
+        <notification-card v-on:input="update($event)"></notification-card>
       </div>
       <div class='col-md-6'>
         
@@ -28,8 +28,8 @@
           
           >
                      <img width="200" class="center-block" src="static/img/great.png" v-if="!hide">
-          </transition>
-                  <img width="200" class="center-block" src="static/img/normal.png" v-if="hide">
+          </transition>{{jello}}
+                  <img width="200" class="center-block" v-bind:class="{ animated: jello, jello :jello }" src="static/img/normal.png" v-if="hide">
       </div>
     </div>
 
@@ -104,6 +104,8 @@
     },
     data () {
       return {
+        bounce: "no",
+        jello: false,
         hide: true,
         statsCards: [
           {
@@ -190,9 +192,22 @@
       }
     },
     methods:{
-      update: function(){
-        console.log(this.hide)
+      update: function(bounce){
+      console.log(bounce)
+      if(bounce == "bounce"){
+       
+        this.jello = true;
+         this.jello = false;
+    
+        
+      }
+      else{
+        
+     
         this.hide = !this.hide;
+        
+        
+      }
       }
     }
   }
