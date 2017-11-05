@@ -18,8 +18,7 @@
             </div>
             <div class="footer">
               <hr/>
-              <div class="stats" >
-          </div>
+              <div class="stats">{{customer_name}}</div>
             </div>
           </div>
         </div>
@@ -32,7 +31,12 @@
     mounted() {
       this.crunchTransactions()
     },
-    props: ['account_details'],
+    props: [
+      'account_details', 
+      'customer_id', 
+      'credit_limit',
+      'customer_details'
+    ],
     data () {
       return {
         appetite: 50,
@@ -52,17 +56,15 @@
       }
     },
     computed: {
+      customer_name () {
+        if(this.customer_details)
+          return this.customer_details.first_name
+      },
       happiness () {
         return this.appetite
       },
-      customer_id () {
-        return this.$route.params.customer_id
-      },
       transactions () {
         return this.$store.state.transactions[this.customer_id]
-      },
-      credit_limit () {
-        return this.account_details.credit_limit
       },
       image () {
         if (this.happiness <= 20) {
@@ -100,6 +102,7 @@
         let prevDate = null;
         this.transactions.forEach(function(element) {
           let transaction_date = new Date(element.year, MONTHS[element.month], element.day);
+
           //figure out how much time since last transaction, 
           //subtract appetite
           if(prevDate != null){

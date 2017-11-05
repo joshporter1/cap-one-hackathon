@@ -67,12 +67,12 @@ export default new Vuex.Store({
     getters: {
         account_details (state) {
             let details = state.account
-            let users = []
+            let users = {}
             if(details.authorized_users){
                 for (let user of details.authorized_users) {
-                    users.push(state.customers[user.customer_id])
+                    users[user.customer_id] = state.customers[user.customer_id]
                 }
-                users.push(state.customers[details.primary_user])
+                users[details.primary_user] = state.customers[details.primary_user]
                 details['users'] = users
             }
             details['transactions'] = state.transactions
