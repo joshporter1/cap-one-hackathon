@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-lg-4 col-md-5">
         <user-card v-if="account_details.users !== undefined" :user="account_details.users[customer_id]" :card_type="account_details.card_type" :kid="true"></user-card>
-        <notification-card v-on:input="update()"></notification-card>
+        <notification-card v-on:makeHappy="makeHappy()"></notification-card>
         <h3 class="title">Your Family</h3>
         <pet-card v-for="customer in account_details.authorized_users" :account_details="account_details" :customer_id="customer.customer_id" :credit_limit="account_details.credit_limit" :customer_details="account_details.users[customer.customer_id]"></pet-card>
       </div>
@@ -18,7 +18,7 @@
           <div class="content">
             <div class="row">
              <div class="container">
-              <router-link to="/overview"> 
+              <!-- <router-link to="/overview"> 
                  <a>
                  <span>
                      <i style ="font-size:50px" class="ti-bell" v-bind:class="{ box: normal }">
@@ -26,11 +26,11 @@
                     <span v-if="normal"> Check out this weeks Summary!  </span>  
                   </span>   
                  </a>
-               </router-link>
+               </router-link> -->
               </div>
             </div>
-            <pet-health v-bind:normal="normal"></pet-health>
-            <pet-profile-card v-bind:normal="normal"></pet-profile-card>
+            <pet-health v-bind:status="status"></pet-health>
+            <pet-profile-card v-bind:status="status"></pet-profile-card>
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -127,7 +127,7 @@
           options: {}
         },
         showsavings: false,
-        normal : false,
+        status : 'sad',
         moneyLeft: 8,
         creditLimit: 20,
         amountToSave: 0
@@ -136,8 +136,15 @@
     methods: Object.assign({}, mapActions(['load_account_details']),
       {
         makeHappy (saved) {
-          this.moneyLeft = this.moneyLeft - saved;
-          this.normal = ! this.normal;
+          if(saved)
+            this.moneyLeft = this.moneyLeft - saved;
+          if (this.status == 'sad') {
+            this.status = 'normal'
+          } else if (this.status == 'normal') {
+            this.status = 'great'
+          } else if (this.status == 'great') {
+            this.status = 'great'
+          }
         }
       }
     ),
