@@ -66,12 +66,12 @@ const routes = [
         component: ApiTest
       },
       {
-        path: 'adultdash/:account_id?',
+        path: 'adultdash/:account_id/:customer_id?',
         name: 'adultdash',
         component: Adultdash
       },
       {
-        path: 'kidDashboard',
+        path: 'kidDashboard/:account_id/:customer_id/:appetite?/:happiness?',
         name: 'kidDashboard',
         component: KidDashboard
       },

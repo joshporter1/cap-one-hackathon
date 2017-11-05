@@ -5,6 +5,10 @@
           <div class="header">
           </div>
           <div class="content all-icons">
+            <chart-card
+              :users="account_details.users">
+            </chart-card>
+
             <pet-card v-for="customer in account_details.authorized_users" :account_details="account_details" :customer_id="customer.customer_id" :credit_limit="account_details.credit_limit" :customer_details="account_details.users[customer.customer_id]"></pet-card>
             <h4 class="title">User Account {{account_id}}</h4>
             <pre>{{account_details}}</pre>
@@ -17,11 +21,13 @@
 <script>
   import { mapState, mapActions, mapGetters } from 'vuex'
   import PetCard from 'components/UIComponents/Cards/PetCard.vue'
+  import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
 
 
   export default {
     components: {
-      PetCard
+      PetCard,
+      ChartCard
     },
     methods: mapActions([
       'load_account_details'

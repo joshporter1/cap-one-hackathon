@@ -16,11 +16,13 @@ import routes from './routes/routes'
 
 // library imports
 import Chartist from 'chartist'
+import VueChartist from 'vue-chartist'
 import 'bootstrap/dist/css/bootstrap.css'
 import './assets/sass/paper-dashboard.scss'
 import 'es6-promise/auto'
 
 // plugin setup
+Vue.use(VueChartist)
 Vue.use(VueRouter)
 Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
