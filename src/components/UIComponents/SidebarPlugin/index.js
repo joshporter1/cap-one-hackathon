@@ -42,8 +42,12 @@ const SidebarStore = {
       name: 'AdultDashboard',
       icon: 'ti-panel',
       path: '/admin/adultdash'
+    },
+    {
+      name: 'kidDashboard',
+      icon: 'ti-panel',
+      path: '/admin/kidDashboard'
     }
-    
   ],
   displaySidebar (value) {
     this.showSidebar = value
