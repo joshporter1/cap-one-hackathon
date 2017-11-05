@@ -63,7 +63,7 @@
       }
     },
     computed: {
-      firstname () { 
+      firstname () {
         if(this.user)
           return this.user.first_name
         else

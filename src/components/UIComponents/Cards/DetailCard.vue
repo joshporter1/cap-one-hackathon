@@ -21,11 +21,6 @@
 </template>
 <script>
   export default {
-    props: ['user'],
-    created: function () {
-      console.log('user data from parent component:')
-      console.log(this.user) //prints out an empty string
-    },
     data () {
       return {
         title: 'Details',
