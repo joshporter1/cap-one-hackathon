@@ -28,9 +28,9 @@
          <div class="col-md-4"></div>
          <div class="col-md-4">
       <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+       <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-        40% Complete (success)
+        40% Full (Healthy!)
         </div>
      </div>
      </div>
@@ -42,12 +42,29 @@
       
       <div class="col-md-4 text-center">
         <p>Money left: $8 / $20</p>
-        
-        <button type="button" class="btn btn-success center-block">Deposit balence to savings</button>
+        <p>You're doing great!</p>
       </div>
     
     <div class="col-md-4"></div>
     </div>
+    
+    
+        <div class="row">
+      <div class="col-md-5">
+        <button type="button" class="btn btn-success center-block">Deposit balence to savings</button>
+      </div>
+      
+      <div class="col-md-2 text-center">
+        <p>or</p>
+      </div>
+      
+      <div class="col-md-5 text-center">
+      <button type="button" class="btn btn-success center-block">See what else you can buy</button>
+      </div>
+    
+    
+    </div>
+    
     
         
       <div class="footer">
