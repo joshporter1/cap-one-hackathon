@@ -28,7 +28,7 @@
     props: ['user', 'card_type', 'kid'],
     data () {
       return {
-        profile: "static/img/aces/face-0.jpg",
+        profile: "static/img/faces/face-0.jpg",
         cards: {
           "Venture Rewards": "2%",
           "Quicksilver Rewards": "1.5%",

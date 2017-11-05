@@ -55,7 +55,7 @@
             </div>
         <div class="row">
           <div class="col-md-5">
-            <button type="button" class="btn btn-success center-block" v-on:click="showsavings = !showsavings">Deposit amount into savings</button>
+            <button type="button" class="btn btn-success center-block" v-on:click="showsavings = !showsavings">Deposit amount into Numus Bank</button>
           </div>
       
           <div class="col-md-2 text-center">
