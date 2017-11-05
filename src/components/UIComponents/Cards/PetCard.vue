@@ -6,7 +6,7 @@
             <div class="row">
               <div class="col-xs-5">
                 <div class="icon-big text-center">
-                  <img width="40" :class="images[imageIndex].class" :src="images[imageIndex].src" alt="">
+                  <img width="60" :class="images[imageIndex].class" :src="images[imageIndex].src" style="margin: 25px 0 0 25px">
                 </div>
               </div>
               <div class="col-xs-7">

@@ -74,6 +74,7 @@
       },
       removeIndex(value) {
         this.tableData.splice(value, 1);
+        this.$emit('tickle')
         if(this.tableData.length == 0){
           this.$emit('makeHappy');
         }
