@@ -2,11 +2,11 @@
     <div class="row">
       <div class="col-lg-4 col-md-5">
         <user-card>
-
         </user-card>
+        
         <members-card>
-
         </members-card>
+        
       </div>
       
       <div class="col-lg-8 col-md-7">
@@ -57,7 +57,7 @@
     
         <div class="row">
       <div class="col-md-5">
-        <button type="button" class="btn btn-success center-block">Deposit amount into savings</button>
+        <button type="button" class="btn btn-success center-block" v-on:click="showsavings = !showsavings">Deposit amount into savings</button>
       </div>
       
       <div class="col-md-2 text-center">
@@ -84,7 +84,7 @@
     </div>
 
   </div>
-      </div>
+</div>
     </div>
 </template>
 <script>
@@ -117,4 +117,15 @@
   }
 </script>
 <style>
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>

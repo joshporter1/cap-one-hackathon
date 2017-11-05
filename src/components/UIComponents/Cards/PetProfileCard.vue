@@ -11,7 +11,7 @@
    
             <div class="col-lg-4 col-md-4">
      
-                  <transition name="pet">
+                  <transition appear name="slide-fade">
                      <img width="200" class="center-block" src="static/img/great.png">
                   </transition>
        
@@ -26,7 +26,8 @@
              </div>
   </div>
   
-   
+  
+
   
   
 </template>
@@ -39,10 +40,15 @@
 
 
 <style>
-.pet-enter-active, .pet-leave-active {
-  transition: opacity 5s
+.slide-fade-enter-active {
+  transition: all 1.2s ease;
 }
-.pet-enter, .pet-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0
+.slide-fade-leave-active {
+  transition: all 1.2s cubic-bezier(3.0, 0.5, 0.8, 3.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(100px);
+  opacity: 0;
 }
 </style>
