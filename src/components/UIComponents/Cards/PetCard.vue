@@ -9,9 +9,10 @@
                   <img class="avatar border-white" :src=image alt="">
                 </div>
               </div>
+              
               <div class="col-xs-7">
                 <div class="numbers">
-                  <!-- <i class="ti-face-smile"></i> -->
+                  <img class="avatar border-white" :src='icon' alt="">
                   <p>Appetite</p> {{appetite}}%
                   <p>Happiness</p>{{happiness}}
                 </div>
@@ -40,12 +41,19 @@
       'account_details', 
       'customer_id', 
       'credit_limit',
-      'customer_details'
+      'customer_details',
+      'images'
     ],
     data () {
       return {
         appetite: 50,
-        happiness: 50
+        happiness: 50,
+          images:[
+              'static/img/minis/meme.png',
+              'static/img/minis/cutepink.png',
+              'static/img/minis/eggs.png',
+              'static/img/minis/stu.png'
+              ],
       }
     },
     watch: {
@@ -74,16 +82,22 @@
       },
       image () {
         if (this.appetite <= 20) {
-          return 'static/img/pet-status/minior.gif'
+          return 'static/img/circles/black.png'
         } else if (this.appetite > 20 && this.appetite <= 40) {
-          return 'static/img/pet-status/minior-red.gif'
+          return 'static/img/circles/red.png'
         } else if (this.appetite > 40 && this.appetite <= 60) {
-          return 'static/img/pet-status/minior-orange.gif'
+          return 'static/img/circles/orange.png'
         } else if (this.appetite > 60 && this.appetite <= 80) {
-          return 'static/img/pet-status/minior-yellow.gif'
+          return 'static/img/circles/yellow.png'
         } else {
-          return 'static/img/pet-status/minior-green.gif'
+          return 'static/img/circles/yellow.png'
         }
+      },
+      icon(){
+      
+       
+        var n= Math.random()* 3
+        return this.images[n]
       }
     },
     methods: {

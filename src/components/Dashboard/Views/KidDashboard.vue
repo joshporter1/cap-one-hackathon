@@ -96,9 +96,12 @@
   
         </div>
     
-    
-    
-        
+    <img width="40" class="animated bounce infinite" src="static/img/minis/cutepink.png">
+    <img width="40" class="animated tada infinite" src="static/img/minis/eggs.png">
+    <img width="40" class="animated swing infinite" src="static/img/minis/meme.png">
+    <img width="40" class="animated rubberBand infinite" src="static/img/minis/rabbi.jpg">
+    <img width="40" class="animated shake infinite" src="static/img/minis/stu.png">
+        <img width="40" class="animated wobble infinite" src="static/img/minis/tako.png">
       <div class="footer">
         <hr>
         <div class="stats">

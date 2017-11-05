@@ -47,23 +47,19 @@
           }
         },
         tableData: [{
-          notification: 'You are spending too much on socks!',
+          notification: 'This is the third week in a row you bought socks!',
           date: '11/5/2017'
         },
         {
-          notification: 'The square root of four is two.',
+          notification: 'You spent $5 more than last week!',
           date: '11/5/2017'
         },
         {
-          notification: 'My team mates are aweome',
+          notification: 'Credit limit Increase in one week!',
           date: '11/5/2017'
         },
         {
-          notification: 'Are you ready kids?',
-          date: '11/5/2017'
-        },
-        {
-          notification: 'Aye aye captain!',
+          notification: 'You went to Mcdonalds alot this week',
           date: '11/5/2017'
         }],
         tableColumns: ['Date', 'Notification']
