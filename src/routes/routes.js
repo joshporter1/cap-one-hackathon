@@ -71,7 +71,7 @@ const routes = [
         component: Adultdash
       },
       {
-        path: 'kidDashboard/:account_id/:customer_id',
+        path: 'kidDashboard/:account_id/:customer_id/:appetite?/:happiness?',
         name: 'kidDashboard',
         component: KidDashboard
       },
