@@ -73,11 +73,11 @@
             <div class="form-group">
           
             </div>
-                <div v-show="showsavings" class="form-group mx-sm-3">
-            <label for="inputPassword2" class="sr-only">Password</label>
+            <div v-show="showsavings" class="form-group mx-sm-3">
+              <label for="inputPassword2" class="sr-only">Password</label>
               <input v-model="amountToSave" type="number" class="form-control border-input" id="inputPassword2" placeholder="Savings Amount">
             </div>
-            <a v-show="showsavings" type="submit" class="form-control border-input" v-on:click="makeHappy(amountToSave)" >Deposit Savings</a>
+            <a href="#" v-show="showsavings" type="submit" class="form-control border-input" v-on:click.prevent="makeHappy(amountToSave)" >Deposit Savings</a>
             </form>
           </div>
         </div>
