@@ -2,113 +2,98 @@
     <div class="row">
       <div class="col-lg-4 col-md-5">
         <user-card v-if="account_details.users !== undefined" :user="account_details.users[customer_id]" :card_type="account_details.card_type" :kid="true"></user-card>
+        <notification-card v-on:input="update()"></notification-card>
         <h3 class="title">Your Family</h3>
         <pet-card v-for="customer in account_details.authorized_users" :account_details="account_details" :customer_id="customer.customer_id" :credit_limit="account_details.credit_limit" :customer_details="account_details.users[customer.customer_id]"></pet-card>
       </div>
       
       <div class="col-lg-8 col-md-7">
-    <div class="card">
-      
-    <div class="header">
-      <slot name="title"></slot>
-      <p class="category">
-        <slot name="subTitle"></slot>
-      </p>
-    </div>
-    
-    <div class="content">
-      <div class="row">
-       <div class="container">
-        <router-link to="/admin/overview"> 
-         <a>
-         <span>
-             <i style ="font-size:50px" class="ti-bell" v-bind:class="{ box: normal }">
+        <div class="card">
+          <div class="header">
+            <slot name="title"></slot>
+            <p class="category">
+              <slot name="subTitle"></slot>
+            </p>
+          </div>
+          <div class="content">
+            <div class="row">
+             <div class="container">
+              <router-link to="/overview"> 
+                 <a>
+                 <span>
+                     <i style ="font-size:50px" class="ti-bell" v-bind:class="{ box: normal }">
+                     </i>
+                    <span v-if="normal"> Check out this weeks Summary!  </span>  
+                  </span>   
+                 </a>
+               </router-link>
+              </div>
+            </div>
+            <pet-health v-bind:normal="normal"></pet-health>
+            <pet-profile-card v-bind:normal="normal"></pet-profile-card>
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="progress">
+                 <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                  40% Full (Healthy!)
+                  </div>
+               </div>
+               </div>
+              <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-3"></div>
               
-             </i>
-            <span v-if="normal"> Check out this weeks Summary!  </span>  
-          </span>   
-         </a>
-       </router-link>
-         </div>
-        </div>
-        
-        <pet-health v-bind:normal="normal"></pet-health>
-      <pet-profile-card v-bind:normal="normal"></pet-profile-card>
-      
-       <div class="row">
-         <div class="col-md-4"></div>
-         <div class="col-md-4">
-      <div class="progress">
-       <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
-        aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-        40% Full (Healthy!)
-        </div>
-     </div>
-     </div>
-     <div class="col-md-4"></div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-3"></div>
-      
-      <div class="col-md-6 text-center">
-        <h3>Money left: ${{moneyLeft}} / ${{creditLimit}}</h3>
-        <h4>You're doing great!</h4>
-      </div>
-    
-    <div class="col-md-3"></div>
-    </div>
-    
-    
+              <div class="col-md-6 text-center">
+                <h3>Money left: ${{moneyLeft}} / ${{creditLimit}}</h3>
+                <h4>You're doing great!</h4>
+              </div>
+            
+              <div class="col-md-3"></div>
+            </div>
         <div class="row">
-      <div class="col-md-5">
-        <button type="button" class="btn btn-success center-block" v-on:click="showsavings = !showsavings">Deposit amount into savings</button>
-      </div>
+          <div class="col-md-5">
+            <button type="button" class="btn btn-success center-block" v-on:click="showsavings = !showsavings">Deposit amount into savings</button>
+          </div>
       
-      <div class="col-md-2 text-center">
-        <p>or</p>
-      </div>
+          <div class="col-md-2 text-center">
+            <p>or</p>
+          </div>
       
-      <div class="col-md-5 text-center">
-      <button type="button" class="btn btn-success center-block">See what else you can buy</button>
-      </div>
+          <div class="col-md-5 text-center">
+            <button type="button" class="btn btn-success center-block">See what else you can buy</button>
+          </div>
         </div>
         </br>
-          <div class="row">
-    
-      
-      <div class="col-md-12 text-center">
-        <form class="form-inline">
-        <div class="form-group">
-      
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <form class="form-inline">
+            <div class="form-group">
+          
+            </div>
+                <div v-show="showsavings" class="form-group mx-sm-3">
+            <label for="inputPassword2" class="sr-only">Password</label>
+              <input v-model="amountToSave" type="number" class="form-control border-input" id="inputPassword2" placeholder="Savings Amount">
+            </div>
+            <a v-show="showsavings" type="submit" class="form-control border-input" v-on:click="makeHappy(amountToSave)" >Deposit Savings</a>
+            </form>
+          </div>
         </div>
-            <div v-show="showsavings" class="form-group mx-sm-3">
-        <label for="inputPassword2" class="sr-only">Password</label>
-          <input v-model="amountToSave" type="number" class="form-control border-input" id="inputPassword2" placeholder="Savings Amount">
-        </div>
-        <a v-show="showsavings" type="submit" class="form-control border-input" v-on:click="makeHappy(amountToSave)" >Deposit Savings</a>
-        </form>
-      </div>
-      
-  
-        </div>
-    
-    
-    
-        
-      <div class="footer">
-        <hr>
-        <div class="stats">
-          <slot name="footer"></slot>
-        </div>
-        <div class="pull-right">
+        <div class="footer">
+          <hr>
+          <div class="stats">
+            <slot name="footer"></slot>
+          </div>
+          <div class="pull-right">
+          </div>
         </div>
       </div>
+      
     </div>
-
   </div>
 </div>
-    </div>
 </template>
 <script>
   import EditProfileForm from './UserProfile/EditProfileForm.vue'
@@ -118,6 +103,7 @@
   import PetCard from 'components/UIComponents/Cards/PetCard.vue'
   import PetProfileCard from 'components/UIComponents/Cards/PetProfileCard.vue'
   import PetHealth from 'components/UIComponents/Cards/PetHealth.vue'
+  import NotificationCard from 'components/UIComponents/Cards/NotificationCard.vue'
 
   import { mapActions, mapGetters } from 'vuex'
   export default {
@@ -125,6 +111,7 @@
       EditProfileForm,
       UserCard,
       MembersCard,
+      NotificationCard,
       ChartCard,
       PetCard,
       PetProfileCard,
