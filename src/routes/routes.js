@@ -18,12 +18,7 @@ const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/admin/overview'
-  },
-  {
-    path: '/admin',
-    component: DashboardLayout,
-    redirect: '/admin/stats',
+    redirect: '/admin/overview',
     children: [
       {
         path: 'overview',
@@ -66,13 +61,13 @@ const routes = [
         component: ApiTest
       },
       {
-        path: 'adultdash/:account_id/:customer_id?',
-        name: 'adultdash',
+        path: 'adult/:account_id/:customer_id?',
+        name: 'adultView',
         component: Adultdash
       },
       {
-        path: 'kidDashboard/:account_id/:customer_id/:appetite?/:happiness?',
-        name: 'kidDashboard',
+        path: 'kid/:account_id/:customer_id/:appetite?/:happiness?',
+        name: 'kidView',
         component: KidDashboard
       },
     ]
