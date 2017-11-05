@@ -75,7 +75,7 @@
         <h3 class="title" style="margin-top: 0">Family Tracker</h3>
         <div class='content'>
           <div class='row'>
-            <div  class='col-lg-6 col-md-6 col-sm-6' v-for="customer in account_details.authorized_users">
+            <div class='col-lg-6 col-md-6 col-sm-6' v-for="customer in account_details.authorized_users">
               <pet-card :account_details="account_details" :customer_id="customer.customer_id" :credit_limit="account_details.credit_limit" :customer_details="account_details.users[customer.customer_id]"></pet-card>
             </div>
           </div>

@@ -1,31 +1,31 @@
 <template>
-  <div class='row'>
-      <div class="col-md-12">
-        <div class="card">
-          <div class="content">
-            <div class="row">
-              <div class="col-xs-5">
-                <div class="icon-big text-center">
-                  <img width="60" :class="images[imageIndex].class" :src="images[imageIndex].src" style="margin: 25px 0 0 25px">
-                </div>
-              </div>
-              <div class="col-xs-7">
-                <div class="numbers">
-                  <span :style="{color: color}"><p>Appetite</p> {{appetite}}%</span>
-                  <p>Happiness</p>{{happiness}}
-                </div>
-              </div>
+  <div>
+    <div class="card">
+      <div class="content">
+        <div class="row">
+          <div class="col-xs-5">
+            <div class="icon-big text-center">
+              <img width="60" :class="images[imageIndex].class" :src="images[imageIndex].src" style="margin: 25px 0 0 25px">
             </div>
-            <div class="footer">
-              <hr/>
-              <div class="stats">
-                <router-link :to="{name: 'kidView', params: {account_id: account_id, customer_id: customer_id, appetite: appetite, happiness: happiness}}">{{customer_name}}</router-link>
-              </div>
+          </div>
+          
+          <div class="col-xs-7">
+            <div class="numbers">
+              <p>Appetite</p> {{appetite}}%
+              <p>Happiness</p>{{happiness}}
             </div>
+          </div>
+        </div>
+        <div class="footer">
+          <hr/>
+          <div class="stats">
+            <router-link :to="{name: 'kidView', params: {account_id: account_id, customer_id: customer_id, appetite: appetite, happiness: happiness}}">{{customer_name}}</router-link>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 </template>
 <script>
   import {RouterLink} from 'vue-router'
@@ -36,8 +36,8 @@
       this.crunchTransactions()
     },
     props: [
-      'account_details',
-      'customer_id',
+      'account_details', 
+      'customer_id', 
       'credit_limit',
       'customer_details'
     ],
@@ -78,14 +78,7 @@
               "class": "animated wobble infinite",
               "src": "static/img/minis/tako.png"
             }
-        ],
-        color_levels: {
-          severe: '#d9534f',
-          danger: '#d98d4f',
-          warning: '#f0ad4e',
-          info: '#9db85c',
-          success: '#5cb85c'
-        }
+          ],
       }
     },
     watch: {
@@ -130,20 +123,9 @@
           return 'static/img/circles/yellow.png'
         }
       },
-      color() {
-        if (this.appetite <= 20) {
-          return this.color_levels.severe;
-        } else if (this.appetite > 20 && this.appetite <= 40) {
-          return this.color_levels.danger;
-        } else if (this.appetite > 40 && this.appetite <= 60) {
-          return this.color_levels.warning;
-        } else if (this.appetite > 60 && this.appetite <= 80) {
-          return this.color_levels.info;
-        } else {
-          return this.color_levels.success;
-        }
-      },
-      icon() {
+      icon(){
+      
+       
         var n= Math.random()* 3
         return this.images[n]
       }
@@ -165,13 +147,13 @@
         MONTHS["October"]   = 9;
         MONTHS["November"]  = 10;
         MONTHS["December"]  = 11;
-
+        
         let appetite = 50;
         let prevDate = null;
         this.transactions.forEach(function(element) {
           let transaction_date = new Date(element.year, MONTHS[element.month], element.day);
 
-          //figure out how much time since last transaction,
+          //figure out how much time since last transaction, 
           //subtract appetite
           if(prevDate != null){
             let diff = _this.dayDiff(prevDate, transaction_date);
@@ -180,7 +162,7 @@
           }
           let add_appetite = (element.amount/_this.credit_limit) * 100;
           appetite += add_appetite;
-
+          
           if(this.customer_id === 100420000)
             appetite = 91;
 
@@ -232,9 +214,9 @@
 
         // Calculate the difference in milliseconds
         var difference_ms = date2_ms - date1_ms;
-
+          
         // Convert back to days and return
-        return Math.round(difference_ms/one_day);
+        return Math.round(difference_ms/one_day); 
       }
     }
   }

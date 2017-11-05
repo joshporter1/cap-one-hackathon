@@ -1,10 +1,9 @@
 <template>
+  <div>
     <div class="row">
       <div class="col-lg-4 col-md-5">
         <user-card v-if="account_details.users !== undefined" :user="account_details.users[customer_id]" :card_type="account_details.card_type" :kid="true"></user-card>
         <notification-card v-on:tickle="tickle()" v-on:makeHappy="makeHappy()"></notification-card>
-        <h3 class="title">Your Family</h3>
-        <pet-card v-for="customer in account_details.authorized_users" :account_details="account_details" :customer_id="customer.customer_id" :credit_limit="account_details.credit_limit" :customer_details="account_details.users[customer.customer_id]"></pet-card>
       </div>
       
       <div class="col-lg-8 col-md-7">
@@ -88,9 +87,12 @@
           </div>
         </div>
       </div>
-      
-
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <h3 class="col-sm-12 title">Your Family</h3>
+    <pet-card class="col-sm-3" v-for="customer in account_details.authorized_users" :account_details="account_details" :customer_id="customer.customer_id" :credit_limit="account_details.credit_limit" :customer_details="account_details.users[customer.customer_id]"></pet-card>
   </div>
 </div>
 </template>
