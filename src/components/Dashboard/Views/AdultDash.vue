@@ -1,13 +1,58 @@
 <template>
     <div class="row">
       <div class="col-lg-4 col-md-5">
-        <user-card></user-card>
-        <detail-card></detail-card>
+        <user-card>
+
+        </user-card>
+        <detail-card>
+          <div slot="api_details">
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-8">
+                  <b>Utilization:</b>
+                </div>
+                <div class="col-xs-4">
+                  {{((account_details.balance / account_details.credit_limit) * 100).toFixed(2)}}%
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-8">
+                  <b>Total Rewards Earned:</b>
+                </div>
+                <div class="col-xs-4">
+                  ${{(account_details.total_rewards_earned).toFixed(2)}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-8">
+                  <b>Balance:</b>
+                </div>
+                <div class="col-xs-4">
+                  ${{(account_details.balance).toFixed(2)}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-8">
+                  <b>Credit Limit:</b>
+                </div>
+                <div class="col-xs-4">
+                  ${{(account_details.credit_limit).toFixed(2)}}
+                </div>
+              </div>
+            </li>
+          </div>
+        </detail-card>
       </div>
       <div class="col-lg-8 col-md-7">
         <div class='card'>
           <div class='header'>
-              <h3 class="title">Family Status</h3>
+            <h3 class="title">Family Status</h3>
           </div>
           <br>
           <div class='content'>
