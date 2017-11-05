@@ -11,8 +11,10 @@
               </div>
               <div class="col-xs-7">
                 <div class="numbers">
+            <p>Appetite</p>
+            {{appetite}}%
             <p>Happiness</p>
-            {{happiness}}%
+            {{happiness}}
           </div>
               </div>
             </div>
@@ -40,7 +42,7 @@
     data () {
       return {
         appetite: 50,
-        // happiness: 0
+        happiness: 50
       }
     },
     watch: {
@@ -52,6 +54,7 @@
       },
       customer_id () {
         this.appetite = 100
+        this.happiness = 100
         this.crunchTransactions()
       }
     },
@@ -60,20 +63,17 @@
         if(this.customer_details)
           return this.customer_details.first_name
       },
-      happiness () {
-        return this.appetite
-      },
       transactions () {
         return this.$store.state.transactions[this.customer_id]
       },
       image () {
-        if (this.happiness <= 20) {
+        if (this.appetite <= 20) {
           return 'static/img/pet-status/minior.gif'
-        } else if (this.happiness > 20 && this.happiness <= 40) {
+        } else if (this.appetite > 20 && this.appetite <= 40) {
           return 'static/img/pet-status/minior-red.gif'
-        } else if (this.happiness > 40 && this.happiness <= 60) {
+        } else if (this.appetite > 40 && this.appetite <= 60) {
           return 'static/img/pet-status/minior-orange.gif'
-        } else if (this.happiness > 60 && this.happiness <= 80) {
+        } else if (this.appetite > 60 && this.appetite <= 80) {
           return 'static/img/pet-status/minior-yellow.gif'
         } else {
           return 'static/img/pet-status/minior-green.gif'
@@ -131,6 +131,28 @@
           prevDate = transaction_date;
         }, this);
         this.appetite = parseInt(appetite)
+
+        let transaction_date = new Date(this.transactions[0].year, MONTHS[this.transactions[0].month], this.transactions[0].day);
+        let end_date = new Date();
+        let numDays = this.dayDiff(transaction_date, end_date);
+        let numWeeks = numDays/7;
+        const alignment = parseInt((Math.random() * 5) + 2); //2 is good, 5 is bad at checking online.
+        let happiness = 50;
+        for(let i = 0; i < numWeeks; i++){
+          let didCheck = (Math.random() * alignment) + 1;
+          didCheck = Math.ceil(didCheck);
+          if(didCheck === alignment){
+            happiness += 10 * Math.ceil((Math.random() * 5) + 1)
+          } else {
+            happiness -= (5 * 7)
+          }
+          if(happiness < 0){
+            happiness = 0;
+          } else if(happiness > 100){
+            happiness = 100;
+          }
+        }
+        this.happiness = happiness;
       },
       dayDiff( date1, date2 ) {
         //Get 1 day in milliseconds
