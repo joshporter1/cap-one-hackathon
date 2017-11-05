@@ -34,7 +34,7 @@
     watch: {
       user () {
         let _this = this
-        if(typeof this.user.gender !== 'undefined') {
+        if(this.user.gender) {
           let url = 'https://randomuser.me/api/?gender='+ this.user.gender.toLowerCase() +'&inc=picture'
           axios.get(url).then((response) => {
             _this.profile = response.data.results[0].picture.medium
