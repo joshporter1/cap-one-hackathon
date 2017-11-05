@@ -1,58 +1,28 @@
 <template>
-  <div>
-    <div class='row'>
-      <div class='col-md-6'>
-        <notification-card v-on:input="update($event)"></notification-card>
-      </div>
-      <div style="height:400px;" class='col-md-6'>
-        
-        <div  class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4 center-block" id="imagesMain">
-      
-        <img width="50"  src="static/img/health.png">
-        <img width="50"  src="static/img/health.png">
-        <img width="50"  src="static/img/health.png" >
-        <img width="50"  src="static/img/health.png" v-if="!hide">
-        <img width="50"  src="static/img/empty.png" v-if="hide">
-     
-       </div> 
-        <div class="col-md-4"></div>
-       </div>
-        
+  <div class='row'>
+    <div class='col-md-6 col-md-offset-3 text-center'>
+      <h1>Numus Pets</h1>
+      <div style="height:350px;" >
+          <div class="center-block" id="imagesMain">
+              <img width="50"  src="static/img/health.png">
+              <img width="50"  src="static/img/health.png">
+              <img width="50"  src="static/img/health.png" >
+              <img width="50"  src="static/img/health.png" v-if="!hide">
+              <img width="50"  src="static/img/empty.png" v-if="hide">
+          </div> 
           <transition 
-          
-           name="custom-classes-transition"
-          enter-active-class="animated tada"
-          leave-active-class="animated bounceOutRight"
-          
-          >
-                     <img width="200" class="center-block" src="static/img/great.png" v-if="!hide">
+            name="custom-classes-transition"
+            enter-active-class="animated tada"
+            leave-active-class="animated bounceOutRight">
+              <img width="200" class="center-block" src="static/img/great.png">
           </transition>
-                  <img width="200" class="center-block" v-bind:class="{ 'animated': jello, 'jello' :jello }" src="static/img/normal.png" v-if="hide">
+        </div>
+        <h5 class="text-center" style="margin-bottom: 0">Philippe Batigne</h5>
+        <h5 class="text-center" style="margin-bottom: 0">Femi Ige</h5>
+        <h5 class="text-center" style="margin-bottom: 0">Josh Porter</h5>
+        <h5 class="text-center" style="margin-bottom: 0">Isara Ritthaworn</h5>
       </div>
     </div>
-
-    <!--Charts-->
-    <div class="row">
-
-      <div class="col-xs-12">
-        <old-chart-card :chart-data="usersChart.data" :chart-options="usersChart.options">
-          <h4 class="title" slot="title">Users behavior</h4>
-          <span slot="subTitle"> 24 Hours performance</span>
-          <span slot="footer">
-            <i class="ti-reload"></i> Updated 3 minutes ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Average
-            <i class="fa fa-circle text-danger"></i> Overdraft
-            
-          </div>
-        </old-chart-card>
-      </div>
-
-      
-    </div>
-
   </div>
 </template>
 <script>
