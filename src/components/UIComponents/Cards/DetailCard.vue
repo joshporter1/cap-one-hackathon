@@ -14,6 +14,7 @@
           </div>
         </div>
       </li>
+      <slot name="api_details"></slot>
     </ul>
     </div>
   </div>
@@ -23,26 +24,7 @@
     data () {
       return {
         title: 'Details',
-        details: [
-          {
-            category: 'Utilization',
-            value: 30,
-            preSymbol: '',
-            postSymbol: '%'
-          },
-          {
-            category: 'Total Cashback',
-            value: 232.20,
-            preSymbol: '$',
-            postSymbol: ''
-          },
-          {
-            category: 'Available Credit',
-            value: 2137.20,
-            preSymbol: '$',
-            postSymbol: ''
-          }
-        ]
+        details: []
       }
     }
   }

@@ -14,7 +14,6 @@
         </h4>
       </div>
     </div>
-    <hr>
     <div class="text-center">
       <div class="row">
         <div v-for="(info,index) in details" :class="getClasses(index)">
@@ -33,21 +32,6 @@
       return {
         name: 'Philippe Batigne',
         screenName: '@chetfaker',
-        details: [
-          {
-            title: '$572.73',
-            subTitle: 'Available'
-          },
-          {
-            title: '$327.67',
-            subTitle: 'Rewards'
-          },
-          {
-            title: '12%',
-            subTitle: 'Utilization'
-          }
-        ],
-        columns: ['title', 'subTitle']
       }
     },
     methods: {
