@@ -26,10 +26,10 @@
                 <router-link :to="{name: 'adultdash', params: {account_id: '109800000'}}">Adult Two</router-link>
               </li>
                <li>
-                <router-link :to="{name: 'kidDashboard', params: {account_id: '100400000', customer_id: '100440000'}}">Kid One</router-link>
+                <router-link :to="{name: 'kidDashboard', params: {account_id: '100400000', customer_id: '100440000', appetite: 75, happiness: 11}}">Kid One</router-link>
               </li>
                <li>
-                <router-link :to="{name: 'kidDashboard', params: {account_id: '100400000', customer_id: '100450000'}}">Kid Two</router-link>
+                <router-link :to="{name: 'kidDashboard', params: {account_id: '100400000', customer_id: '100450000', appetite: 46, happiness: 22}}">Kid Two</router-link>
               </li>
               
              </drop-down>
