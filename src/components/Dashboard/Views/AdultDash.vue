@@ -1,8 +1,7 @@
 <template>
     <div class="row">
       <div class="col-lg-4 col-md-5">
-        <user-card>
-
+        <user-card v-if="account_details.users !== undefined" :user="account_details.users[account_details.primary_user]" :card_type="account_details.card_type">
         </user-card>
         <detail-card>
           <div slot="api_details">
@@ -12,7 +11,7 @@
                   <b>Utilization:</b>
                 </div>
                 <div class="col-xs-4">
-                  {{((account_details.balance / account_details.credit_limit) * 100).toFixed(2)}}%
+                  {{utilization}}%
                 </div>
               </div>
             </li>
@@ -22,7 +21,7 @@
                   <b>Total Rewards Earned:</b>
                 </div>
                 <div class="col-xs-4">
-                  ${{(account_details.total_rewards_earned).toFixed(2)}}
+                  ${{rewards}}
                 </div>
               </div>
             </li>
@@ -32,7 +31,7 @@
                   <b>Balance:</b>
                 </div>
                 <div class="col-xs-4">
-                  ${{(account_details.balance).toFixed(2)}}
+                  ${{balance}}
                 </div>
               </div>
             </li>
@@ -42,7 +41,7 @@
                   <b>Credit Limit:</b>
                 </div>
                 <div class="col-xs-4">
-                  ${{(account_details.credit_limit).toFixed(2)}}
+                  ${{limit}}
                 </div>
               </div>
             </li>
@@ -81,17 +80,6 @@
       DetailCard,
       PetCard
     },
-    data(){
-      return {
-        preferencesChart: {
-          data: {
-            labels: ['62%', '32%', '6%'],
-            series: [62, 32, 6]
-          },
-          options: {}
-        }
-      }
-    },
     methods: mapActions([
       'load_account_details'
     ]),
@@ -102,6 +90,22 @@
     },
     computed: Object.assign({}, mapGetters(['account_details']),
       {
+        utilization: function() {
+          if(this.account_details.balance !== undefined)
+            return ((this.account_details.balance / this.account_details.credit_limit) * 100).toFixed(2)
+        },
+        rewards: function() {
+          if(this.account_details.total_rewards_earned !== undefined)
+            return (this.account_details.total_rewards_earned).toFixed(2)
+        },
+        balance: function() {
+          if(this.account_details.balance !== undefined)
+            return (this.account_details.balance).toFixed(2)
+        },
+        limit: function() {
+          if(this.account_details.credit_limit !== undefined)
+            return (this.account_details.credit_limit).toFixed(2)
+        },
         account_id: function() {
           return this.$route.params.account_id
         },
