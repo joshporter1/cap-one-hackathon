@@ -1,11 +1,14 @@
 <template>
   <div>
-    count: {{count}}
-    count: {{$store.state.count}}
-    <!--Stats cards-->
 
-    <pet-card></pet-card>
-
+    <div class='row'>
+      <div class='col-md-6'>
+        <notification-card></notification-card>
+      </div>
+      <div class='col-md-6'>
+        <pet-card></pet-card>
+      </div>
+    </div>
 
     <!--Charts-->
     <div class="row">
@@ -59,11 +62,13 @@
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
   import PetCard from 'components/UIComponents/Cards/PetCard.vue'
+  import NotificationCard from 'components/UIComponents/Cards/NotificationCard.vue'
   export default {
     components: {
       StatsCard,
       ChartCard,
-      PetCard
+      PetCard,
+      NotificationCard
     },
     /**
      * Chart data used to render stats, charts. Should be replaced with server data

@@ -1,6 +1,6 @@
 <template>
   <div class='row'>
-      <div class="col-lg-3 col-sm-6" v-for='pet in petCards.pets'>
+      <div class="col-md-12" v-for='pet in petCards.pets'>
         <div class="card">
           <div class="content">
             <div class="row">
