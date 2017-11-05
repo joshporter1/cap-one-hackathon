@@ -61,17 +61,12 @@ const routes = [
         component: TableList
       },
       {
-        path: 'api-test/:account_id',
+        path: 'api-test/:account_id/:customer_id?',
         name: 'api-test',
         component: ApiTest
       },
       {
-        path: 'api-test/:account_id/:customer_id',
-        name: 'api-test',
-        component: ApiTest
-      },
-      {
-        path: 'adultdash',
+        path: 'adultdash/:account_id?',
         name: 'adultdash',
         component: Adultdash
       },
