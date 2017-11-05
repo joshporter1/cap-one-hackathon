@@ -2,11 +2,11 @@
   <div>
     <div class='row'>
       <div class='col-md-6'>
-        <notification-card v-on:input="update()"></notification-card>
+        <notification-card v-on:input="update($event)"></notification-card>
       </div>
-      <div class='col-md-6'>
+      <div style="height:400px;" class='col-md-6'>
         
-        <div class="row">
+        <div  class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4 center-block" id="imagesMain">
       
@@ -29,7 +29,7 @@
           >
                      <img width="200" class="center-block" src="static/img/great.png" v-if="!hide">
           </transition>
-                  <img width="200" class="center-block" src="static/img/normal.png" v-if="hide">
+                  <img width="200" class="center-block" v-bind:class="{ 'animated': jello, 'jello' :jello }" src="static/img/normal.png" v-if="hide">
       </div>
     </div>
 
@@ -43,40 +43,14 @@
           <span slot="footer">
             <i class="ti-reload"></i> Updated 3 minutes ago</span>
           <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Click
-            <i class="fa fa-circle text-warning"></i> Click Second Time
+            <i class="fa fa-circle text-info"></i> Average
+            <i class="fa fa-circle text-danger"></i> Overdraft
+            
           </div>
         </old-chart-card>
       </div>
 
-      <div class="col-md-6 col-xs-12">
-        <old-chart-card :chart-data="preferencesChart.data"  chart-type="Pie">
-          <h4 class="title" slot="title">Email Statistics</h4>
-          <span slot="subTitle"> Last campaign performance</span>
-          <span slot="footer">
-            <i class="ti-timer"></i> Campaign set 2 days ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Bounce
-            <i class="fa fa-circle text-warning"></i> Unsubscribe
-          </div>
-        </old-chart-card>
-      </div>
-
-      <div class="col-md-6 col-xs-12">
-        <old-chart-card :chart-data="activityChart.data" :chart-options="activityChart.options">
-          <h4 class="title" slot="title">2015 Sales</h4>
-          <span slot="subTitle"> All products including Taxes</span>
-          <span slot="footer">
-            <i class="ti-check"></i> Data information certified</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Tesla Model S
-            <i class="fa fa-circle text-warning"></i> BMW 5 Series
-          </div>
-        </old-chart-card>
-      </div>
-
+      
     </div>
 
   </div>
@@ -104,6 +78,8 @@
     },
     data () {
       return {
+        bounce: "no",
+        jello: false,
         hide: true,
         statsCards: [
           {
@@ -143,7 +119,7 @@
           data: {
             labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
             series: [
-              [287, 385, 490, 562, 594, 626, 698, 895, 952],
+              
               [67, 152, 193, 240, 387, 435, 535, 642, 744],
               [23, 113, 67, 108, 190, 239, 307, 410, 410]
             ]
@@ -190,9 +166,27 @@
       }
     },
     methods:{
-      update: function(){
-        console.log(this.hide)
+      update: function(bounce){
+      console.log(bounce)
+      if(bounce == "bounce"){
+        console.log('yay')
+        this.jello = false;
+        var self = this;
+        setTimeout(function(){
+                self.jello = true;
+            }, 50);
+        
+        
+        
+        
+      }
+      else{
+        
+     
         this.hide = !this.hide;
+        this.jello = true;
+        
+      }
       }
     }
   }
