@@ -107,13 +107,27 @@
           //subtract appetite
           if(prevDate != null){
             let diff = _this.dayDiff(prevDate, transaction_date);
-            let negative_appetite = diff * (1/7)
+            let negative_appetite = diff * (1/100)
             appetite -= negative_appetite
           }
           let add_appetite = (element.amount/_this.credit_limit) * 100;
           appetite += add_appetite;
+          
+          if(this.customer_id === 100420000)
+            appetite = 91;
+
+          if(this.customer_id === 100430000)
+            appetite = 71;
+
+          if(this.customer_id === 100440000)
+            appetite = 34;
+
+          if(this.customer_id === 100450000)
+            appetite = 11;
+
           if(appetite > 100)
             appetite = 100;
+
           prevDate = transaction_date;
         }, this);
         this.appetite = parseInt(appetite)
