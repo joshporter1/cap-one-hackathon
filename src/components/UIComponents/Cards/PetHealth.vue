@@ -3,12 +3,16 @@
    
     
 <div class="row">
+       
     <div class="col-md-4"></div>
-    <div class="col-md-4 center-block">
+    <div class="col-md-4 center-block" id="imagesMain">
+        <p style = "color:#dd3920;" v-if="normal">Happiness Up!</p>
         <img width="50"   src="static/img/health.png">
         <img width="50"  src="static/img/health.png">
-        <img width="50"  src="static/img/health.png">
-        <img width="50"  src="static/img/health.png">
+        <img width="50"  src="static/img/health.png" v-if="normal">
+       
+        <img width="50"  src="static/img/empty.png" v-if="!normal">
+        <img width="50"  src="static/img/empty.png">
      
        </div> 
         <div class="col-md-4"></div>
@@ -19,7 +23,8 @@
 
 <script>
   export default {
-    name: 'pet-health'
+    name: 'pet-health',
+    props: ['normal']
   }
 
 </script>
@@ -31,5 +36,14 @@
 }
 .pet-enter, .pet-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0
+}
+
+#imagesMain {
+ 
+  text-align: center;
+}
+#imagesMain img {
+  
+  vertical-align: middle;
 }
 </style>

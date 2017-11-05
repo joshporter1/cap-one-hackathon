@@ -2,10 +2,34 @@
   <div>
     <div class='row'>
       <div class='col-md-6'>
-        <notification-card></notification-card>
+        <notification-card v-on:input="update()"></notification-card>
       </div>
       <div class='col-md-6'>
-        <pet-card></pet-card>
+        
+        <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 center-block" id="imagesMain">
+      
+        <img width="50"  src="static/img/health.png">
+        <img width="50"  src="static/img/health.png">
+        <img width="50"  src="static/img/health.png" >
+        <img width="50"  src="static/img/health.png" v-if="!hide">
+        <img width="50"  src="static/img/empty.png" v-if="hide">
+     
+       </div> 
+        <div class="col-md-4"></div>
+       </div>
+        
+          <transition 
+          
+           name="custom-classes-transition"
+          enter-active-class="animated tada"
+          leave-active-class="animated bounceOutRight"
+          
+          >
+                     <img width="200" class="center-block" src="static/img/great.png" v-if="!hide">
+          </transition>
+                  <img width="200" class="center-block" src="static/img/normal.png" v-if="hide">
       </div>
     </div>
 
@@ -63,6 +87,7 @@
   import PetCard from 'components/UIComponents/Cards/PetCard.vue'
   import NotificationCard from 'components/UIComponents/Cards/NotificationCard.vue'
   export default {
+
     components: {
       StatsCard,
       ChartCard,
@@ -79,6 +104,7 @@
     },
     data () {
       return {
+        hide: true,
         statsCards: [
           {
             type: 'warning',
@@ -162,10 +188,26 @@
         }
 
       }
+    },
+    methods:{
+      update: function(){
+        console.log(this.hide)
+        this.hide = !this.hide;
+      }
     }
   }
 
 </script>
 <style>
+#imagesMain {
+ 
+  text-align: center;
+}
+#imagesMain img {
+  
+  vertical-align: middle;
+}
+
+
 
 </style>
