@@ -2,7 +2,10 @@
   <div class='row'>
       <div class="col-md-12">
         <div class="card">
-          <div class="content" >
+          <div class="header">
+            <h4 class="title">Monthly Transactions</h4>
+          </div>
+          <div class="content">
             <chartist
                 v-if="this.transactions_series && this.transactions_keys"
                 ratio="ct-golden-section"
@@ -55,17 +58,19 @@
 
         let series_tracker = {}
         let series = []
-        for(let user in this.transactions) {
+        for(let user in this.users) {
           let reduced = {}
-          series_tracker[user] = this.transactions[user].map(function (tx) {
-            return {
-              date: tx.month + " " + tx.year,
-              amount: tx.amount
-            }
-          }).forEach(function(tx) {
-            reduced[tx.date] = reduced[tx.date] || 0
-            reduced[tx.date] += parseInt(tx.amount)
-          })
+          if(this.transactions[user]){
+            series_tracker[user] = this.transactions[user].map(function (tx) {
+              return {
+                date: tx.month + " " + tx.year,
+                amount: tx.amount
+              }
+            }).forEach(function(tx) {
+              reduced[tx.date] = reduced[tx.date] || 0
+              reduced[tx.date] += parseInt(tx.amount)
+            })
+          }
           series_tracker[user] = reduced
         }
         return series_tracker
@@ -79,18 +84,18 @@
         // if(Object.keys(this.transactions).length === 0){ return false }
         // return Object.keys(Object.values(this.mapped_transactions))
         return [
-          'November',
-          'December',
-          'January',
-          'February',
-          'March',
+          'Nov',
+          'Dec',
+          'Jan',
+          'Feb',
+          'Mar',
           'May',
-          'April',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October'
+          'Apr',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct'
         ]
       }
     },

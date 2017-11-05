@@ -5,21 +5,19 @@
         <detail-card></detail-card>
       </div>
       <div class="col-lg-8 col-md-7">
-        <div class='card'>
-          <div class='header'>
-              <h3 class="title">Family Status</h3>
-          </div>
-          <br>
+          <h3 class="title" style="margin-top: 0">Family Status</h3>
           <div class='content'>
             <div class='row'>
-              <div  class='col-md-3' v-for="customer in account_details.authorized_users">
+              <div  class='col-lg-6 col-md-6 col-sm-6' v-for="customer in account_details.authorized_users">
                 <pet-card :account_details="account_details" :customer_id="customer.customer_id" :credit_limit="account_details.credit_limit" :customer_details="account_details.users[customer.customer_id]"></pet-card>
               </div>
             </div>
+            <chart-card
+              :users="account_details.users">
+            </chart-card>
           </div>
           <br><br>
         </div>
-      </div>
     </div>
 </template>
 <script>

@@ -19,10 +19,18 @@
             <!--</a>-->
           </li>
              <drop-down title="Switch Users" icon="ti-user">
-               <li><a href="#">Adult One</a></li>
-               <li><a href="#">Adult Two</a></li>
-               <li><a href="#">Teenager One</a></li>
-               <li><a href="#">Kid One</a></li>
+               <li>
+                <router-link :to="{name: 'adultdash', params: {account_id: '100400000'}}">Adult One</router-link>
+              </li>
+               <li>
+                <router-link :to="{name: 'adultdash', params: {account_id: '100400000'}}">Adult Two</router-link>
+              </li>
+               <li>
+                <router-link :to="{name: 'kidDashboard', params: {account_id: '100400000', customer_id: '100440000'}}">Kid One</router-link>
+              </li>
+               <li>
+                <router-link :to="{name: 'kidDashboard', params: {account_id: '100400000', customer_id: '100440000'}}">Kid Two</router-link>
+              </li>
               
              </drop-down>
           <li>
@@ -39,6 +47,7 @@
   </nav>
 </template>
 <script>
+import { RouterLink } from 'vue-router'
   export default {
     computed: {
       routeName () {
