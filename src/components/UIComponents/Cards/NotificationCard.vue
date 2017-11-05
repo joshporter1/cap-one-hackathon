@@ -14,7 +14,7 @@
                   <td v-on:click="removeIndex(index)"><button class='btn btn-danger'>Delete</button></td>
                 </tr>
                 <tr v-if="tableData.length === 0">
-                  <td>No more notification!</td>
+                  <td>No more notifications!<span style = "color:#dd3920;"> Happiness Up!</span></td>
                 </tr>
               </tbody>
             </table>
