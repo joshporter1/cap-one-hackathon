@@ -1,12 +1,9 @@
 <template>
     <div class="row">
       <div class="col-lg-4 col-md-5">
-        <user-card>
-        </user-card>
-        
-        <members-card>
-        </members-card>
-        
+        <user-card v-if="account_details.users !== undefined" :user="account_details.users[customer_id]" :card_type="account_details.card_type" :kid="true"></user-card>
+        <h3 class="title">Your Family</h3>
+        <pet-card v-for="customer in account_details.authorized_users" :account_details="account_details" :customer_id="customer.customer_id" :credit_limit="account_details.credit_limit" :customer_details="account_details.users[customer.customer_id]"></pet-card>
       </div>
       
       <div class="col-lg-8 col-md-7">
@@ -118,14 +115,18 @@
   import UserCard from './UserProfile/UserCard.vue'
   import MembersCard from './UserProfile/MembersCard.vue'
   import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
+  import PetCard from 'components/UIComponents/Cards/PetCard.vue'
   import PetProfileCard from 'components/UIComponents/Cards/PetProfileCard.vue'
   import PetHealth from 'components/UIComponents/Cards/PetHealth.vue'
+
+  import { mapActions, mapGetters } from 'vuex'
   export default {
     components: {
       EditProfileForm,
       UserCard,
       MembersCard,
       ChartCard,
+      PetCard,
       PetProfileCard,
       PetHealth
     },
@@ -145,12 +146,35 @@
         amountToSave: 0
       }
     },
-    methods: {
-      makeHappy (saved) {
-        this.moneyLeft = this.moneyLeft - saved;
-        this.normal = ! this.normal;
+    methods: Object.assign({}, mapActions(['load_account_details']),
+      {
+        makeHappy (saved) {
+          this.moneyLeft = this.moneyLeft - saved;
+          this.normal = ! this.normal;
+        }
+      }
+    ),
+    mounted () {
+      if(this.account_id){
+        this.load_account_details(this.account_id)
+      }
+    },
+    computed: Object.assign({}, mapGetters(['account_details']),
+      {
+        account_id: function() {
+          return this.$route.params.account_id
+        },
+        customer_id: function() {
+          return this.$route.params.customer_id
+        }
+      }
+    ),
+    watch: {
+      account_id () {
+        this.load_account_details(this.account_id)
       }
     }
+
   }
 </script>
 <style>

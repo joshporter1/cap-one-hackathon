@@ -25,17 +25,20 @@
   import axios from 'axios'
 
   export default {
-    props: ['user', 'card_type'],
+    props: ['user', 'card_type', 'kid'],
     data () {
       return {
         profile: "static/img/faces/face-0.jpg"
       }
     },
     watch: {
-      user () {
+      user (val) {
+        console.log(val)
         let _this = this
-        if(this.user.gender) {
+        if(val !== undefined) {
           let url = 'https://randomuser.me/api/?gender='+ this.user.gender.toLowerCase() +'&inc=picture'
+          if(this.kid)
+            url += '&lego'
           axios.get(url).then((response) => {
             _this.profile = response.data.results[0].picture.medium
           }, (err) => {
