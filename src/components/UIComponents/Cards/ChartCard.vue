@@ -1,92 +1,108 @@
 <template>
-  <div class="card">
-    <div class="header">
-      <slot name="title"></slot>
-      <p class="category">
-        <slot name="subTitle"></slot>
-      </p>
-    </div>
-    <div class="content">
-      <div :id="chartId" class="ct-chart"></div>
-      <div class="footer">
-        <div class="chart-legend">
-          <slot name="legend"></slot>
-        </div>
-        <hr>
-        <div class="stats">
-          <slot name="footer"></slot>
-        </div>
-        <div class="pull-right">
+  <div class='row'>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="content" >
+            <chartist
+                v-if="this.transactions_series && this.transactions_keys"
+                ratio="ct-golden-section"
+                type="Bar"
+                :data="chartData"
+                :options="chartOptions" >
+            </chartist>
+          </div>
         </div>
       </div>
     </div>
-
-  </div>
 </template>
 <script>
   export default {
     name: 'chart-card',
-    props: {
-      footerText: {
-        type: String,
-        default: ''
-      },
-      headerTitle: {
-        type: String,
-        default: 'Chart title'
-      },
-      chartType: {
-        type: String,
-        default: 'Line' // Line | Pie | Bar
-      },
-      chartOptions: {
-        type: Object,
-        default: () => {
-          return {}
-        }
-      },
-      chartData: {
-        type: Object,
-        default: () => {
-          return {
-            labels: [],
-            series: []
-          }
+    mounted() {
+    },
+    props: [
+      'users'
+    ],
+    data () {
+      return {
+        chartOptions: {
+            lineSmooth: false,
+            stackBars: true
         }
       }
     },
-    data () {
-      return {
-        chartId: 'no-id'
+    watch: {
+      'transactions': {
+        handler (val) {
+        },
+        deep: true
+      },
+      customer_id () {
+      }
+    },
+    computed: {
+      chartData () {
+        return {
+          labels: this.transactions_keys,
+          series: this.transactions_series
+        }
+      },
+      transactions () {
+        return this.$store.state.transactions
+      },
+      mapped_transactions () {
+        if(!this.transactions){ return {} }
+
+        let series_tracker = {}
+        let series = []
+        for(let user in this.transactions) {
+          let reduced = {}
+          series_tracker[user] = this.transactions[user].map(function (tx) {
+            return {
+              date: tx.month + " " + tx.year,
+              amount: tx.amount
+            }
+          }).forEach(function(tx) {
+            reduced[tx.date] = reduced[tx.date] || 0
+            reduced[tx.date] += parseInt(tx.amount)
+          })
+          series_tracker[user] = reduced
+        }
+        return series_tracker
+      },
+      transactions_series () {
+        if(Object.keys(this.transactions).length === 0){ return false }
+        return Object.values(this.mapped_transactions).map(function(obj) {return Object.values(obj)})
+      },
+      transactions_keys () {
+        // let _this = this
+        // if(Object.keys(this.transactions).length === 0){ return false }
+        // return Object.keys(Object.values(this.mapped_transactions))
+        return [
+          'November',
+          'December',
+          'January',
+          'February',
+          'March',
+          'May',
+          'April',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October'
+        ]
       }
     },
     methods: {
-      /***
-       * Initializes the chart by merging the chart options sent via props and the default chart options
-       */
-      initChart () {
-        var chartIdQuery = `#${this.chartId}`
-        this.$Chartist[this.chartType](chartIdQuery, this.chartData, this.chartOptions)
-      },
-      /***
-       * Assigns a random id to the chart
-       */
-      updateChartId () {
-        var currentTime = new Date().getTime().toString()
-        var randomInt = this.getRandomInt(0, currentTime)
-        this.chartId = `div_${randomInt}`
-      },
-      getRandomInt (min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min
-      }
-    },
-    mounted () {
-      this.updateChartId()
-      this.$nextTick(this.initChart)
     }
   }
 
 </script>
 <style>
-
+.ct-series .ct-bar {
+  /* The width of your bars */
+  stroke-width: 30px;
+  /* Yes! Dashed bars! */
+}
 </style>
