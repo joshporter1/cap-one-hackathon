@@ -18,16 +18,6 @@
             <li class="list-group-item" style='border: 0px;'>
               <div class="row" >
                 <div class="col-xs-8">
-                  <b>Total Rewards Earned:</b>
-                </div>
-                <div class="col-xs-4">
-                  ${{rewards}}
-                </div>
-              </div>
-            </li>
-            <li class="list-group-item" style='border: 0px;'>
-              <div class="row" >
-                <div class="col-xs-8">
                   <b>Balance:</b>
                 </div>
                 <div class="col-xs-4">
@@ -42,6 +32,26 @@
                 </div>
                 <div class="col-xs-4">
                   ${{limit}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-8">
+                  <b>Remaining:</b>
+                </div>
+                <div class="col-xs-4">
+                  ${{remaining}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" style='border: 0px;'>
+              <div class="row" >
+                <div class="col-xs-8">
+                  <b>Total Rewards Earned:</b>
+                </div>
+                <div class="col-xs-4">
+                  ${{rewards}}
                 </div>
               </div>
             </li>
@@ -106,14 +116,14 @@
           if(this.account_details.credit_limit !== undefined)
             return (this.account_details.credit_limit).toFixed(2)
         },
+        remaining: function() {
+          return this.limit - this.balance
+        },
         account_id: function() {
           return this.$route.params.account_id
         },
         customer_id: function() {
           return this.$route.params.customer_id
-        },
-        pretty_account_details: function () {
-          return JSON.stringify(this.account_details, null, 2);
         }
       }
     ),

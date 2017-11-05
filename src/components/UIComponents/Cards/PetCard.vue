@@ -20,7 +20,7 @@
             <div class="footer">
               <hr/>
               <div class="stats">
-                <router-link :to="{name: 'kidDashboard', params: {account_id: account_id, customer_id: customer_id, appetite: appetite, happiness: happiness}}">{{customer_name}}</router-link>
+                <router-link :to="{name: 'kidView', params: {account_id: account_id, customer_id: customer_id, appetite: appetite, happiness: happiness}}">{{customer_name}}</router-link>
               </div>
             </div>
           </div>
