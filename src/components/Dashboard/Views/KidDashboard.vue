@@ -91,6 +91,7 @@
         </div>
       </div>
       
+
     </div>
   </div>
 </div>
@@ -179,20 +180,20 @@
    
     position: relative;
     float: left;
-    -moz-animation: 2s ease 0s normal none infinite swing;
+    -moz-animation: .5s ease 0s normal none infinite swing;
     -moz-transform-origin: center top;
-    -webkit-animation:swing 2s infinite ease-in-out;
+    -webkit-animation:swing .5s infinite ease-in-out;
     -webkit-transform-origin:top;
 }
 @-moz-keyframes swing{
-    0%{-moz-transform:rotate(-7deg)}
-    50%{-moz-transform:rotate(7deg)}
-    100%{-moz-transform:rotate(-7deg)}
+    0%{-moz-transform:rotate(-20deg)}
+    50%{-moz-transform:rotate(20deg)}
+    100%{-moz-transform:rotate(-20deg)}
 }
 @-webkit-keyframes swing{
-    0%{-webkit-transform:rotate(-7deg)}
-    50%{-webkit-transform:rotate(7deg)}
-    100%{-webkit-transform:rotate(-7deg)}
+    0%{-webkit-transform:rotate(-20deg)}
+    50%{-webkit-transform:rotate(20deg)}
+    100%{-webkit-transform:rotate(-20deg)}
 }
 
 </style>
