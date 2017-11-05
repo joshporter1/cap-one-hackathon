@@ -6,13 +6,12 @@
             <div class="row">
               <div class="col-xs-5">
                 <div class="icon-big text-center">
-                  <img class="avatar border-white" :src=image alt="">
+                  <img width="40" :class="images[imageIndex].class" :src="images[imageIndex].src" alt="">
                 </div>
               </div>
               
               <div class="col-xs-7">
                 <div class="numbers">
-                  <img class="avatar border-white" :src='icon' alt="">
                   <p>Appetite</p> {{appetite}}%
                   <p>Happiness</p>{{happiness}}
                 </div>
@@ -41,19 +40,46 @@
       'account_details', 
       'customer_id', 
       'credit_limit',
-      'customer_details',
-      'images'
+      'customer_details'
     ],
     data () {
       return {
         appetite: 50,
         happiness: 50,
-          images:[
-              'static/img/minis/meme.png',
-              'static/img/minis/cutepink.png',
-              'static/img/minis/eggs.png',
-              'static/img/minis/stu.png'
-              ],
+        images:[
+            {
+              "class": "animated bounce infinite",
+              "src": "static/img/minis/cutepink.png"
+            },
+            {
+              "class": "animated tada infinite",
+              "src": "static/img/minis/eggs.png"
+            },
+            {
+              "class": "animated swing infinite",
+              "src": "static/img/minis/meme.png"
+            },
+            {
+              "class": "animated swing infinite",
+              "src": "static/img/minis/meme.png"
+            },
+            {
+              "class": "animated swing infinite",
+              "src": "static/img/minis/meme.png"
+            },
+            {
+              "class": "animated rubberBand infinite",
+              "src": "static/img/minis/rabbi.jpg"
+            },
+            {
+              "class": "animated shake infinite",
+              "src": "static/img/minis/stu.png"
+            },
+            {
+              "class": "animated wobble infinite",
+              "src": "static/img/minis/tako.png"
+            }
+          ],
       }
     },
     watch: {
@@ -80,7 +106,12 @@
       transactions () {
         return this.$store.state.transactions[this.customer_id]
       },
+      imageIndex () {
+        return Math.floor((Math.random() * this.images.length));
+      },
       image () {
+
+
         if (this.appetite <= 20) {
           return 'static/img/circles/black.png'
         } else if (this.appetite > 20 && this.appetite <= 40) {
