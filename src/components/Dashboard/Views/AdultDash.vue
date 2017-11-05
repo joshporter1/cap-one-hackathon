@@ -82,20 +82,22 @@
 
           <div class='row'>
             <div class="col-md-12">
-                <h3 class="title">Family Transations</h3>
+                <h3 class="title">Family Transactions</h3>
               <div class="card">
                 <div class="content table-responsive table-full-width">
                   <table class="table table-striped">
                       <thead>
+                        <th>Date</th>
+                        <th>Merchant</th>
                         <th>Rewards Earned</th>
                         <th>Amount</th>
-                        <th>Merchant</th>
                       </thead>
                       <tbody>
-                        <tr v-for="transaction in flattenTransactions">
-                          <td>${{transaction.rewards_earned}}</td>
-                          <td>${{transaction.amount}}</td>
+                        <tr v-if="flattenTransactions" v-for="transaction in flattenTransactions">
+                          <td>{{transaction.month}} {{transaction.day}}, {{transaction.year}}</td>
                           <td>{{transaction.merchant_name}}</td>
+                          <td>${{transaction.rewards_earned.toFixed(2)}}</td>
+                          <td>${{transaction.amount.toFixed(2)}}</td>
                         </tr>
                       </tbody>
                   </table>
@@ -171,7 +173,7 @@
               transactions.push(transaction);
             });
           });
-          return transactions;
+          return Array.reverse(transactions);
         }
       }
     ),
