@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class='row'>
       <div class='col-md-6'>
         <notification-card v-on:input="update()"></notification-card>
