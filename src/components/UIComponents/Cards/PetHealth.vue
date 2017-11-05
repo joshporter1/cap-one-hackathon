@@ -5,10 +5,11 @@
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4 center-block">
+        <img width="50"   src="static/img/health.png">
         <img width="50"  src="static/img/health.png">
         <img width="50"  src="static/img/health.png">
         <img width="50"  src="static/img/health.png">
-        <img width="50"  src="static/img/health.png">
+     
        </div> 
         <div class="col-md-4"></div>
  </div>
