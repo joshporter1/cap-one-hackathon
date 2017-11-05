@@ -6,16 +6,14 @@
     <div class="content">
       <div class="author">
         <img class="avatar border-white" src="static/img/faces/phil.png" alt="...">
-        <h4 class="title">Philippe Batigne
+        <h4 class="title">{{name}}
           <br>
           <a href="#">
-            <small>@chetfaker</small>
+            <small>{{screenName}}</small>
           </a>
         </h4>
       </div>
-  
     </div>
-    <hr>
     <div class="text-center">
       <div class="row">
         <div v-for="(info,index) in details" :class="getClasses(index)">
@@ -32,20 +30,8 @@
   export default {
     data () {
       return {
-        details: [
-          {
-            title: '12',
-            subTitle: 'Files'
-          },
-          {
-            title: '2GB',
-            subTitle: 'Used'
-          },
-          {
-            title: '24,6$',
-            subTitle: 'Spent'
-          }
-        ]
+        name: 'Philippe Batigne',
+        screenName: '@chetfaker',
       }
     },
     methods: {
@@ -58,11 +44,17 @@
         } else {
           return 'col-md-3'
         }
+      },
+      hasValue (item, column) {
+        return item[column.toLowerCase()] !== 'undefined'
+      },
+      itemValue (item, column) {
+        return item[column.toLowerCase()]
       }
     }
   }
 
 </script>
 <style>
-  
+
 </style>
