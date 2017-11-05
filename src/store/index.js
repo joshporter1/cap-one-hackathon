@@ -34,6 +34,27 @@ let makeRequest = function (context, endpoint, account_id, state_name) {
         console.log(err)
     })
 }
+
+let fieldSorter = function (fields) {
+  return function (a, b) {
+      return fields
+          .map(function (o) {
+              var dir = 1;
+              if (o[0] === '-') {
+                 dir = -1;
+                 o=o.substring(1);
+              }
+              if (a[o] > b[o]) return dir;
+              if (a[o] < b[o]) return -(dir);
+              return 0;
+          })
+          .reduce(function firstNonZeroValue (p,n) {
+              return p ? p : n;
+          }, 0);
+  };
+}
+
+
 export default new Vuex.Store({
     state: {
         accounts: [],
@@ -46,12 +67,12 @@ export default new Vuex.Store({
     getters: {
         account_details (state) {
             let details = state.account
-            let users = []
+            let users = {}
             if(details.authorized_users){
                 for (let user of details.authorized_users) {
-                    users.push(state.customers[user.customer_id])
+                    users[user.customer_id] = state.customers[user.customer_id]
                 }
-                users.push(state.customers[details.primary_user])
+                users[details.primary_user] = state.customers[details.primary_user]
                 details['users'] = users
             }
             details['transactions'] = state.transactions
@@ -72,7 +93,10 @@ export default new Vuex.Store({
           state.customers = tmp
         },
         set_transactions (state, transactions) {
-          state.transactions = transactions
+          let transaction = transactions.customers
+          for (let customer of transaction) {
+            Vue.set(state.transactions, customer.customer_id, customer.transactions.sort(fieldSorter(['year', 'month', 'day'])))
+          }
         },
         set_rewards (state, rewards) {
           state.rewards = rewards
