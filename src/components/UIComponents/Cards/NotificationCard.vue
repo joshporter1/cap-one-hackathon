@@ -73,16 +73,9 @@
         return item[column.toLowerCase()]
       },
       removeIndex(value) {
-        
-        
         this.tableData.splice(value, 1);
-        
         if(this.tableData.length == 0){
-           this.$emit('input',"no");
-          
-        }else{
-          this.$emit('input',"bounce");
-        
+          this.$emit('makeHappy');
         }
       }
     }

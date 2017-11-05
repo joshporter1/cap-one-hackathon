@@ -2,50 +2,34 @@
    
     
     <div class="row">
-        
-
-      
-            <div class="col-lg-4 col-md-4">
-
-            </div>
-   
-            <div style="height: 250px" class="col-lg-4 col-md-4">
+      <div class="col-lg-4 col-md-4"></div>
+        <div style="height: 250px" class="col-lg-4 col-md-4">
     
         <transition appear name="slide-fade">
-            <img width="200" class="center-block" v-bind:class="{ 'animated': jello, 'jello' :jello }" src="static/img/sad.png" v-if="!normal">
+            <img width="200" class="center-block" src="static/img/sad.png" v-if="status == 'sad'">
+        </transition>
+
+        <transition 
+          name="custom-classes-transition"
+          enter-active-class="animated tada"
+          leave-active-class="animated bounceOutRight">
+            <img width="160" class="center-block" src="static/img/great.png" v-if="status == 'great'">
         </transition>
                   
-       <transition 
-       
-       
-         name="custom-classes-transition"
-          enter-active-class="animated tada"
-          
-       
-       
-       >
-               <img width="160" class="center-block" src="static/img/normal.png" v-if="normal" >
-       </transition>
-       
-            </div>
-         
-             <div class="col-lg-4 col-md-4">
-     
-       
-       
-       
-             </div>
+        <transition 
+          name="custom-classes-transition"
+          enter-active-class="animated tada">
+            <img width="160" class="center-block" src="static/img/normal.png" v-if="status == 'normal'" >
+        </transition>
+        </div>
+        <div class="col-lg-4 col-md-4"></div>
   </div>
-  
-  
 
-  
-  
 </template>
 <script>
   export default {
     name: 'pet-profile-card',
-    props:['normal']
+    props:['status']
   }
 
 </script>
