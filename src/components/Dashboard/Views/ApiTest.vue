@@ -5,8 +5,9 @@
           <div class="header">
           </div>
           <div class="content all-icons">
+            <pet-card :account_details="account_details"></pet-card>
             <h4 class="title">User Account {{account_id}}</h4>
-            <pre>{{pretty_account_details}}</pre>
+            <pre>{{account_details}}</pre>
           </div>
         </div>
       </div>
@@ -15,8 +16,13 @@
 </template>
 <script>
   import { mapState, mapActions, mapGetters } from 'vuex'
+  import PetCard from 'components/UIComponents/Cards/PetCard.vue'
+
 
   export default {
+    components: {
+      PetCard
+    },
     methods: mapActions([
       'load_account_details'
     ]),
@@ -30,7 +36,7 @@
         account_id: function() {
           return this.$route.params.account_id
         },
-        pretty_account_details: function() {
+        pretty_account_details: function () {
           return JSON.stringify(this.account_details, null, 2);
         }
       }
