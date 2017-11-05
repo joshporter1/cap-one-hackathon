@@ -20,7 +20,13 @@
     </div>
     
     <div class="content">
-      
+      <div class="row">
+       <div class="container">
+         <a>
+           <i style ="font-size:50px" class="ti-bell"></i>
+         </a>
+         </div>
+        </div>
         <pet-health></pet-health>
       <pet-profile-card></pet-profile-card>
       
@@ -51,7 +57,7 @@
     
         <div class="row">
       <div class="col-md-5">
-        <button type="button" class="btn btn-success center-block">Deposit balence to savings</button>
+        <button type="button" class="btn btn-success center-block">Deposit amount into savings</button>
       </div>
       
       <div class="col-md-2 text-center">
