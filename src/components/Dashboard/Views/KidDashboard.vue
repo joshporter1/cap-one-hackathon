@@ -139,6 +139,9 @@
         makeHappy (saved) {
           this.moneyLeft = this.moneyLeft - saved;
           this.normal = ! this.normal;
+        },
+        update (){
+          
         }
       }
     ),

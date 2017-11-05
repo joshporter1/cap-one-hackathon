@@ -12,7 +12,7 @@
             <div style="height: 250px" class="col-lg-4 col-md-4">
     
         <transition appear name="slide-fade">
-            <img width="200" class="center-block" src="static/img/sad.png" v-if="!normal">
+            <img width="200" class="center-block" v-bind:class="{ 'animated': jello, 'jello' :jello }" src="static/img/sad.png" v-if="!normal">
         </transition>
                   
        <transition 
