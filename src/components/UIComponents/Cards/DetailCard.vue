@@ -14,35 +14,22 @@
           </div>
         </div>
       </li>
+      <slot name="api_details"></slot>
     </ul>
     </div>
   </div>
 </template>
 <script>
   export default {
+    props: ['user'],
+    created: function () {
+      console.log('user data from parent component:')
+      console.log(this.user) //prints out an empty string
+    },
     data () {
       return {
         title: 'Details',
-        details: [
-          {
-            category: 'Utilization',
-            value: 30,
-            preSymbol: '',
-            postSymbol: '%'
-          },
-          {
-            category: 'Total Cashback',
-            value: 232.20,
-            preSymbol: '$',
-            postSymbol: ''
-          },
-          {
-            category: 'Available Credit',
-            value: 2137.20,
-            preSymbol: '$',
-            postSymbol: ''
-          }
-        ]
+        details: []
       }
     }
   }
