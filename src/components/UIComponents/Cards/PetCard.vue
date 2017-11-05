@@ -6,21 +6,22 @@
             <div class="row">
               <div class="col-xs-5">
                 <div class="icon-big text-center">
-            <img class="avatar border-white" :src=image alt="">
-          </div>
+                  <img class="avatar border-white" :src=image alt="">
+                </div>
               </div>
               <div class="col-xs-7">
                 <div class="numbers">
-            <p>Appetite</p>
-            {{appetite}}%
-            <p>Happiness</p>
-            {{happiness}}
-          </div>
+                  <!-- <i class="ti-face-smile"></i> -->
+                  <p>Appetite</p> {{appetite}}%
+                  <p>Happiness</p>{{happiness}}
+                </div>
               </div>
             </div>
             <div class="footer">
               <hr/>
-              <div class="stats">{{customer_name}}</div>
+              <div class="stats">
+                <router-link :to="{name: 'kidView', params: {account_id: account_id, customer_id: customer_id, appetite: appetite, happiness: happiness}}">{{customer_name}}</router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -28,6 +29,8 @@
     </div>
 </template>
 <script>
+  import {RouterLink} from 'vue-router'
+
   export default {
     name: 'pet-card',
     mounted() {
@@ -59,6 +62,9 @@
       }
     },
     computed: {
+      account_id () {
+        return this.$route.params.account_id
+      },
       customer_name () {
         if(this.customer_details)
           return this.customer_details.first_name
@@ -173,5 +179,4 @@
 
 </script>
 <style>
-
 </style>
