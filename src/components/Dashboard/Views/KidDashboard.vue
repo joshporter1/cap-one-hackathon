@@ -54,16 +54,14 @@
               <div class="col-md-3"></div>
             </div>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-4">
+          </div>
+      
+          <div class="col-md-4">
             <button type="button" class="btn btn-success center-block" v-on:click="showsavings = !showsavings">Deposit amount into Numus Bank</button>
           </div>
       
-          <div class="col-md-2 text-center">
-            <p>or</p>
-          </div>
-      
-          <div class="col-md-5 text-center">
-            <button type="button" class="btn btn-success center-block">See what else you can buy</button>
+          <div class="col-md-4">
           </div>
         </div>
         </br>
