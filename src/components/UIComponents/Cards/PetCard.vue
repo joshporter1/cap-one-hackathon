@@ -9,10 +9,9 @@
                   <img width="40" :class="images[imageIndex].class" :src="images[imageIndex].src" alt="">
                 </div>
               </div>
-              
               <div class="col-xs-7">
                 <div class="numbers">
-                  <p>Appetite</p> {{appetite}}%
+                  <span :style="{color: color}"><p>Appetite</p> {{appetite}}%</span>
                   <p>Happiness</p>{{happiness}}
                 </div>
               </div>
@@ -37,8 +36,8 @@
       this.crunchTransactions()
     },
     props: [
-      'account_details', 
-      'customer_id', 
+      'account_details',
+      'customer_id',
       'credit_limit',
       'customer_details'
     ],
@@ -79,7 +78,14 @@
               "class": "animated wobble infinite",
               "src": "static/img/minis/tako.png"
             }
-          ],
+        ],
+        color_levels: {
+          severe: '#d9534f',
+          danger: '#d98d4f',
+          warning: '#f0ad4e',
+          info: '#9db85c',
+          success: '#5cb85c'
+        }
       }
     },
     watch: {
@@ -124,9 +130,20 @@
           return 'static/img/circles/yellow.png'
         }
       },
-      icon(){
-      
-       
+      color() {
+        if (this.appetite <= 20) {
+          return this.color_levels.severe;
+        } else if (this.appetite > 20 && this.appetite <= 40) {
+          return this.color_levels.danger;
+        } else if (this.appetite > 40 && this.appetite <= 60) {
+          return this.color_levels.warning;
+        } else if (this.appetite > 60 && this.appetite <= 80) {
+          return this.color_levels.info;
+        } else {
+          return this.color_levels.success;
+        }
+      },
+      icon() {
         var n= Math.random()* 3
         return this.images[n]
       }
@@ -148,13 +165,13 @@
         MONTHS["October"]   = 9;
         MONTHS["November"]  = 10;
         MONTHS["December"]  = 11;
-        
+
         let appetite = 50;
         let prevDate = null;
         this.transactions.forEach(function(element) {
           let transaction_date = new Date(element.year, MONTHS[element.month], element.day);
 
-          //figure out how much time since last transaction, 
+          //figure out how much time since last transaction,
           //subtract appetite
           if(prevDate != null){
             let diff = _this.dayDiff(prevDate, transaction_date);
@@ -163,7 +180,7 @@
           }
           let add_appetite = (element.amount/_this.credit_limit) * 100;
           appetite += add_appetite;
-          
+
           if(this.customer_id === 100420000)
             appetite = 91;
 
@@ -215,9 +232,9 @@
 
         // Calculate the difference in milliseconds
         var difference_ms = date2_ms - date1_ms;
-          
+
         // Convert back to days and return
-        return Math.round(difference_ms/one_day); 
+        return Math.round(difference_ms/one_day);
       }
     }
   }
