@@ -11,32 +11,32 @@ const SidebarStore = {
     {
       name: 'Family',
       icon: 'ti-user',
-      path: '/404'
+      path: '#'
     },
     {
       name: 'Transactions',
       icon: 'ti-view-list-alt',
-      path: '/404'
+      path: '#'
     },
     {
       name: 'Budget',
       icon: 'ti-briefcase',
-      path: '/404'
+      path: '#'
     },
     {
       name: 'ATM Locator',
       icon: 'ti-location-pin',
-      path: '/404'
+      path: '#'
     },
     {
       name: 'Notifications',
       icon: 'ti-bell',
-      path: '/404'
+      path: '#'
     },
     {
       name: 'Help',
       icon: 'ti-help',
-      path: '/404'
+      path: '#'
     }
   ],
   displaySidebar (value) {

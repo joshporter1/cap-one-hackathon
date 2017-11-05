@@ -4,14 +4,14 @@
       <div class="col-md-12">
         <div class="card">
           <div class="header">
-            <h4 class="title">Notifications</h4>
+            <h4 class="title" style="margin-top: 0;">Notifications</h4>
           </div>
           <div class="content table-responsive table-full-width">
             <table class="table">
               <tbody>
                 <tr v-for="(item, index) in tableData">
                   <td v-for="column in tableColumns" v-if="hasValue(item, column)">{{itemValue(item, column)}}</td>
-                  <td v-on:click="removeIndex(index)"><button class='btn btn-danger'>Delete</button></td>
+                  <td v-on:click="removeIndex(index)"><button class='btn btn-primary'>Dismiss</button></td>
                 </tr>
                 <tr v-if="tableData.length === 0">
                   <td>No more notification!</td>
